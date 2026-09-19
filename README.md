@@ -1,95 +1,104 @@
 # Finanpolis
 
-Directorio del proyecto Finanpolis. Life-Sim sobre educación Financiera.
----
-# Basic Life-Sim Architecture
+Project directory for **Finanpolis**, a life simulation game focused on financial education.
 
-Game
-├── Main
-│   ├── GameManager
-│   ├── ScenarioManager
-│   ├── TimeManager
-│   └── SaveManager
-│
-├── Simulation
-│   ├── World
-│   │   ├── IsometricGrid
-│   │   ├── TileMap
-│   │   ├── Furniture
-│   │   ├── InteractableObjects
-│   │   └── Characters
-│   │
-│   ├── Player
-│   │   ├── Movement
-│   │   ├── Needs
-│   │   ├── Inventory
-│   │   ├── Relationships
-│   │   └── Actions
-│   │
-│   ├── Time
-│   │   ├── Day
-│   │   ├── Schedule
-│   │   └── Events
-│   │
-│   └── State
-│       ├── PlayerState
-│       ├── WorldState
-│       ├── RelationshipState
-│       └── ScenarioState
-│
-├── Scenarios
-│   ├── ScenarioDefinition
-│   ├── ScenarioLoader
-│   ├── ScenarioContext
-│   ├── ScenarioObjectives
-│   └── ScenarioConsequences
-│
-└── Interface
-	├── HUD
-	├── NeedsPanel
-	├── InventoryPanel
-	├── DialoguePanel
-	├── ScenarioPanel
-	└── CalendarPanel
+## Basic Life-Sim Architecture
 
-#Generic Scene Structure
+```mermaid
+graph TD
+    Game --> Main
+    Game --> Simulation
+    Game --> Scenarios
+    Game --> Interface
 
-Main
-├── World
-│   ├── TileMap
-│   ├── GroundObjects
-│   ├── Furniture
-│   ├── InteractableObjects
-│   ├── Player
-│   └── Camera2D
-│
-├── SimulationController
-├── ScenarioController
-├── TimeController
-└── UI
-	├── HUD
-	├── NeedsPanel
-	├── DialoguePanel
-	└── ScenarioPanel
+    Main --> GameManager
+    Main --> ScenarioManager
+    Main --> TimeManager
+    Main --> SaveManager
 
-## The architecture has to further modified until reach congurency with the GDD
----
-# Building steps
-### Build it in this order:
+    Simulation --> World
+    Simulation --> Player
+    Simulation --> Time
+    Simulation --> State
 
-	1 - Create the main scene.
-	2 - Add an isometric TileMap.
-	3 - Add player movement using grid or world coordinates.
-	4 - Add a camera that follows the player.
-	5 - Create one interactable object, such as a bed.
-	6 - Add a basic interaction system.
-	7 - Add a simple time manager.
-	8 - Add one player need, such as energy.
-	9 - Display the need and time in the UI.
-	10 - Save and load the current state only after the loop works.
+    World --> IsometricGrid
+    World --> TileMap
+    World --> Furniture
+    World --> InteractableObjects
+    World --> Characters
 
-### A minimal first implementation could use:
+    Player --> Movement
+    Player --> Needs
+    Player --> Inventory
+    Player --> Relationships
+    Player --> Actions
 
+    Time --> Day
+    Time --> Schedule
+    Time --> Events
+
+    State --> PlayerState
+    State --> WorldState
+    State --> RelationshipState
+    State --> ScenarioState
+
+    Scenarios --> ScenarioDefinition
+    Scenarios --> ScenarioLoader
+    Scenarios --> ScenarioContext
+    Scenarios --> ScenarioObjectives
+    Scenarios --> ScenarioConsequences
+
+    Interface --> HUD
+    Interface --> NeedsPanel
+    Interface --> InventoryPanel
+    Interface --> DialoguePanel
+    Interface --> ScenarioPanel
+    Interface --> CalendarPanel
+```
+
+## Generic Scene Structure
+
+```mermaid
+graph TD
+    Main --> World
+    Main --> SimulationController
+    Main --> ScenarioController
+    Main --> TimeController
+    Main --> UI
+
+    World --> TileMap
+    World --> GroundObjects
+    World --> Furniture
+    World --> InteractableObjects
+    World --> Player
+    World --> Camera2D
+
+    UI --> HUD
+    UI --> NeedsPanel
+    UI --> DialoguePanel
+    UI --> ScenarioPanel
+```
+
+The architecture will be further modified to maintain consistency with the GDD.
+
+## Building Steps
+
+### Build the Game in This Order
+
+1. Create the main scene.
+2. Add an isometric `TileMap`.
+3. Add player movement using grid-based or world coordinates.
+4. Add a camera that follows the player.
+5. Create one interactable object, such as a bed.
+6. Add a basic interaction system.
+7. Add a simple time manager.
+8. Add one player need, such as energy.
+9. Display the player's needs and the current time in the UI.
+10. Add save and load functionality only after the core gameplay loop is working.
+
+### Minimal First Implementation
+
+```text
 Scenes/
 ├── main.tscn
 ├── world.tscn
@@ -103,8 +112,8 @@ Scripts/
 ├── interaction_system.gd
 ├── time_manager.gd
 └── utilities/
-	├── grid_utils.gd
-	└── coordinate_utils.gd
+    ├── grid_utils.gd
+    └── coordinate_utils.gd
 
 Assets/
 ├── art/
@@ -114,68 +123,66 @@ Assets/
 └── fonts/
 
 Data/
+```
 
-Start with placeholder graphics. Use simple colored shapes or basic tiles instead of final art. The goal of this first step is to prove that movement, interaction, time, and state changes work together.
+Start with placeholder graphics. Use simple colored shapes or basic tiles instead of final artwork. The goal of this first step is to prove that movement, interaction, time, and state changes work together.
 
-### Once this loop works, add the scenario architecture:
+## Scenario Architecture
 
+Once the core gameplay loop is working, add the scenario architecture:
 
-Scenario Data
-	  ↓
-Scenario Manager
-	  ↓
-Starting World State
-	  ↓
-Player Actions
-	  ↓
-State Changes
-	  ↓
-Scenario Conditions
-	  ↓
-Events and Consequences
+```mermaid
+flowchart TD
+    A[Scenario Data] --> B[Scenario Manager]
+    B --> C[Starting World State]
+    C --> D[Player Actions]
+    D --> E[State Changes]
+    E --> F[Scenario Conditions]
+    F --> G[Events and Consequences]
+```
 
-Do not begin by creating many scenarios, characters, objects, or UI screens. First make one complete interaction work from beginning to end. That interaction becomes the foundation for the rest of the game.
----
-# Project Folder Structure
+Do not begin by creating many scenarios, characters, objects, or UI screens. First, make one complete interaction work from beginning to end. That interaction will become the foundation for the rest of the game.
 
-This project is organized into separate folders for assets, scenes, scripts, and game data.
+## Project Folder Structure
 
-## Assets/
+The project is organized into separate folders for assets, scenes, scripts, and game data.
+
+### `Assets/`
 
 Contains the visual, audio, and font resources used throughout the game.
 
-### Assets/art/
+#### `Assets/art/`
 
 Contains the game's artwork and visual resources.
 
-### Assets/art/sprites/
+#### `Assets/art/sprites/`
 
 Contains sprites for characters, enemies, objects, items, effects, and other 2D game elements.
 
-### Assets/art/tilesets/
+#### `Assets/art/tilesets/`
 
 Contains tiles and tileset resources used to create the isometric game world and its environments.
 
-### Assets/audio/
+#### `Assets/audio/`
 
 Contains music, sound effects, ambient sounds, and other audio resources used in the game.
 
-### Assets/fonts/
+#### `Assets/fonts/`
 
 Contains the fonts used for the game's user interface, menus, dialogue, and other text elements.
 
-## Scenes/
+### `Scenes/`
 
 Contains Godot scene files that define the structure, components, and reusable elements of the game.
 
-## Scripts/
+### `Scripts/`
 
 Contains the GDScript files responsible for controlling game logic, mechanics, systems, and behaviors.
 
-### Scripts/utilities/
+#### `Scripts/utilities/`
 
 Contains reusable helper scripts and general-purpose functions shared across different parts of the game.
 
-## Data/
+### `Data/`
 
 Contains configuration files and structured game data, such as item information, scenario settings, quests, dialogue, and other gameplay-related resources.
