@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://Scripts/state_machine/state_machine.gd" id="2_sm"]
+[ext_resource type="Script" path="res://Scripts/state_machine/idle.gd" id="3_idle"]
+[ext_resource type="Script" path="res://Scripts/state_machine/moving.gd" id="4_moving"]
+[ext_resource type="Script" path="res://Scripts/state_machine/interacting.gd" id="5_interacting"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
+radius = 6.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_player"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_feet")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_player")
+offset = Vector2(0, -16)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_sm")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_idle")
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("4_moving")
+
+[node name="Interacting" type="Node" parent="StateMachine"]
+script = ExtResource("5_interacting")
