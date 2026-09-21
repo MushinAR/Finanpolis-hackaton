@@ -22,7 +22,9 @@ Para sumar tiles nuevos, agregarlos a la derecha en la misma imagen y crearlos e
 
 ## Props — `sprites/props/*.png`
 
-Un PNG de 64×64 por objeto: `bed`, `chair`, `trash_bin` y `crate` (caja obstáculo). Los que cambian de estado tienen una imagen por estado: `computer_off`, `computer_booting`, `computer_on` `lamp_off`, `lamp_on` y `switch_off`, `switch_on` (interruptor de la pared). Objetos más grandes que un tile se pueden dibujar más grandes; avisar para ajustar el punto de apoyo y la colisión.
+Un PNG de 64×64 por objeto: `bed`, `chair`, `trash_bin` y `crate` (caja obstáculo). Los que cambian de estado tienen una imagen por estado: `computer_off`, `computer_booting`, `computer_on` `lamp_off`, `lamp_on` y `switch_off`, `switch_on` (interruptor) y `ceiling_light_off`, `ceiling_light_on` (lámpara colgante del techo).
+
+El **interruptor** se dibuja como una placa plana pegada a la pared del fondo izquierdo (la cara que mira hacia abajo a la derecha), no como un objeto sobre el piso. Su base va en la celda pegada a esa pared. La **lámpara colgante** cuelga a unos 84 px sobre el piso (se ajusta con la posición del nodo `Sprite` en `ceiling_light.tscn`). Objetos más grandes que un tile se pueden dibujar más grandes; avisar para ajustar el punto de apoyo y la colisión.
 
 ## Luces — `lights/light_soft.tres`
 
