@@ -1,37 +1,45 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_world"]
-[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://Scenes/usable_object.tscn" id="3_obj"]
+[ext_resource type="PackedScene" path="res://Scenes/floor.tscn" id="2_floor"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://Scenes/bed.tscn" id="4_bed"]
+[ext_resource type="PackedScene" path="res://Scenes/chair.tscn" id="5_chair"]
+[ext_resource type="PackedScene" path="res://Scenes/computer.tscn" id="6_computer"]
+[ext_resource type="PackedScene" path="res://Scenes/obstacle.tscn" id="7_obstacle"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
+parsed_geometry_type = 1
+source_geometry_mode = 2
+source_geometry_group_name = &"nav_obstacles"
+agent_radius = 9.0
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_world")
 
-[node name="UsableObjects" type="Node2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_world")
 
-[node name="Bed" parent="UsableObjects" instance=ExtResource("3_obj")]
-position = Vector2(180, -60)
-display_name = "Cama"
-animation = &"sleep"
-facing = &"se"
-placeholder_color = Color(0.4, 0.5, 0.85, 1)
+[node name="Floor" parent="." instance=ExtResource("2_floor")]
 
-[node name="Chair" parent="UsableObjects" instance=ExtResource("3_obj")]
-position = Vector2(-160, 40)
-display_name = "Silla"
-animation = &"sit"
-facing = &"se"
-placeholder_color = Color(0.6, 0.4, 0.25, 1)
+[node name="Props" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="Computer" parent="UsableObjects" instance=ExtResource("3_obj")]
-position = Vector2(-40, -120)
-display_name = "Computadora"
-animation = &"use_computer"
-facing = &"nw"
-duration = 5.0
-placeholder_color = Color(0.3, 0.3, 0.35, 1)
+[node name="Bed" parent="Props" instance=ExtResource("4_bed")]
+position = Vector2(192, 192)
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
+[node name="Chair" parent="Props" instance=ExtResource("5_chair")]
+position = Vector2(-128, 160)
+
+[node name="Computer" parent="Props" instance=ExtResource("6_computer")]
+position = Vector2(64, 96)
+
+[node name="Crate" parent="Props" instance=ExtResource("7_obstacle")]
+position = Vector2(-96, 208)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(0, 128)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

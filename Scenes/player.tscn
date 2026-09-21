@@ -5,27 +5,25 @@
 [ext_resource type="Script" path="res://Scripts/state_machine/idle.gd" id="3_idle"]
 [ext_resource type="Script" path="res://Scripts/state_machine/moving.gd" id="4_moving"]
 [ext_resource type="Script" path="res://Scripts/state_machine/interacting.gd" id="5_interacting"]
+[ext_resource type="Resource" path="res://Data/player_config.tres" id="6_cfg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 6.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_player"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_player")
+config = ExtResource("6_cfg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_feet")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 3.0
+
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_player")
 offset = Vector2(0, -16)
 
 [node name="StateMachine" type="Node" parent="."]

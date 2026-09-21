@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/prop.gd" id="1_prop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_click"]
+size = Vector2(44, 44)
+
+[node name="Prop" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_prop")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+offset = Vector2(0, -16)
+
+[node name="ClickArea" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_click")
+
+[node name="Body" type="StaticBody2D" parent="." groups=["nav_obstacles"]]
+
+[node name="Footprint" type="CollisionPolygon2D" parent="Body"]
+polygon = PackedVector2Array(0, -14, 28, 0, 0, 14, -28, 0)
+
+[node name="StandPoint" type="Marker2D" parent="."]
+position = Vector2(0, 32)
+
+[node name="UsePoint" type="Marker2D" parent="."]

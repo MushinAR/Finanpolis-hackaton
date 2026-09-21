@@ -1,32 +1,37 @@
 extends State
-## Usando un objeto (sentado, durmiendo, en la compu...).
+## Usando un prop (sentado, durmiendo, en la compu...).
 ## Un solo estado sirve para todos: lo que cambia (animación, posición, duración)
-## lo define cada UsableObject.
+## lo define el PropData de cada prop.
 ##
-## msg: { "usable": UsableObject }
+## Si el jugador corta a la mitad, se levanta enseguida y el prop avisa completed = false.
+## La próxima vez que lo use, el temporizador arranca de cero (no retoma donde quedó).
+##
+## msg: { "prop": Prop }
 
-var usable: UsableObject
+var prop: Prop
 var timer: SceneTreeTimer
+var completed: bool = false
 
 
 func enter(msg: Dictionary = {}) -> void:
-	usable = msg.get("usable")
-	if usable == null or not usable.begin_interaction(player):
+	prop = msg.get("prop")
+	completed = false
+	if prop == null or not prop.begin_interaction(player):
 		# Estaba ocupado o no vino nada: volvemos a idle.
-		usable = null
+		prop = null
 		state_machine.switch_state.call_deferred(&"idle")
 		return
 
 	player.velocity = Vector2.ZERO
-	player.current_usable = usable
-	player.global_position = usable.get_use_position()
-	player.facing = usable.facing
-	player.play_animation(usable.animation)
-	player.interaction_started.emit(usable)
+	player.current_prop = prop
+	player.global_position = prop.get_use_position()
+	player.facing = prop.data.facing
+	player.play_animation(prop.data.animation)
+	player.interaction_started.emit(prop)
 
 	# duration 0 = se queda hasta que el jugador haga otra cosa.
-	if usable.duration > 0.0:
-		timer = get_tree().create_timer(usable.duration)
+	if prop.data.duration > 0.0:
+		timer = get_tree().create_timer(prop.data.duration)
 		timer.timeout.connect(_on_duration_finished)
 
 
@@ -34,15 +39,16 @@ func exit() -> void:
 	if timer and timer.timeout.is_connected(_on_duration_finished):
 		timer.timeout.disconnect(_on_duration_finished)
 	timer = null
-	if usable == null:
+	if prop == null:
 		return
-	# Se levanta y queda parado al lado del objeto.
-	player.global_position = usable.get_stand_position()
-	player.current_usable = null
-	usable.end_interaction(player)
-	player.interaction_finished.emit(usable)
-	usable = null
+	# Se levanta y queda parado al lado del prop.
+	player.global_position = prop.get_stand_position()
+	player.current_prop = null
+	prop.end_interaction(player, completed)
+	player.interaction_finished.emit(prop, completed)
+	prop = null
 
 
 func _on_duration_finished() -> void:
+	completed = true
 	state_machine.switch_state(&"idle")
