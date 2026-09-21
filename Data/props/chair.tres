@@ -8,3 +8,4 @@ display_name = "Silla"
 animation = &"sit"
 facing = &"se"
 duration = 0.0
+accepts_items = false

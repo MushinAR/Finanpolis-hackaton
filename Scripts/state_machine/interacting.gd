@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 ## Usando un prop (sentado, durmiendo, en la compu...).
 ## Un solo estado sirve para todos: lo que cambia (animación, posición, duración)
 ## lo define el PropData de cada prop.
@@ -51,4 +51,7 @@ func exit() -> void:
 
 func _on_duration_finished() -> void:
 	completed = true
+	# Si el prop recibe items (basurero), se queda con lo que el jugador lleve en las manos.
+	if prop.data.accepts_items and player.carried_item:
+		prop.receive_item(player.release_item())
 	state_machine.switch_state(&"idle")

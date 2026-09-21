@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 ## Parado, sin hacer nada.
 
 

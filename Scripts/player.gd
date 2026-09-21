@@ -11,6 +11,9 @@ signal arrived
 ## Necesidades y tiempo se enganchan acá.
 signal interaction_started(prop: Prop)
 signal interaction_finished(prop: Prop, completed: bool)
+## Agarró un item / lo soltó en el piso. Quien tenga el mundo (World) lo vuelve a poner en escena.
+signal item_picked(item: Item)
+signal item_dropped(item: Item, at_position: Vector2)
 ## Cambió el estado de la máquina (sirve para HUD o debug).
 signal state_changed(state_name: StringName)
 
@@ -25,10 +28,13 @@ var speed: float
 var facing: StringName = &"se"
 ## Prop que está usando ahora (null si ninguno).
 var current_prop: Prop
+## Item que lleva en las manos (null si ninguno).
+var carried_item: Item
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var carry_slot: Marker2D = $CarrySlot
 
 
 func _ready() -> void:
@@ -46,10 +52,60 @@ func move_to(target: Vector2) -> void:
 func interact_with(prop: Prop) -> void:
 	if prop == current_prop or prop.is_occupied:
 		return
+	# Regla: con las manos ocupadas solo se usan los props que reciben items (basurero).
+	# Y esos solo tienen sentido si llevás algo.
+	if prop.data.accepts_items != (carried_item != null):
+		return
 	state_machine.switch_state(&"moving", {
 		"target": prop.get_stand_position(),
 		"prop": prop,
 	})
+
+
+## Camina hasta el item y lo agarra. Con las manos ocupadas no hace nada.
+func pick_up(item: Item) -> void:
+	if carried_item or item.is_carried:
+		return
+	state_machine.switch_state(&"moving", {
+		"target": item.global_position,
+		"action": &"pick",
+		"item": item,
+	})
+
+
+## Camina hasta un punto y suelta lo que lleve. Sin nada en las manos no hace nada.
+func drop_item_at(target: Vector2) -> void:
+	if carried_item == null:
+		return
+	state_machine.switch_state(&"moving", {"target": target, "action": &"drop"})
+
+
+## Se queda con el item en las manos (lo llaman los estados).
+func attach_item(item: Item) -> void:
+	if item.get_parent():
+		item.get_parent().remove_child(item)
+	carry_slot.add_child(item)
+	item.position = Vector2.ZERO
+	item.set_carried(true)
+	carried_item = item
+	item_picked.emit(item)
+
+
+## Le saca el item de las manos y lo devuelve suelto (sin padre).
+func release_item() -> Item:
+	var item := carried_item
+	if item:
+		carry_slot.remove_child(item)
+		item.set_carried(false)
+		carried_item = null
+	return item
+
+
+## Suelta el item en el piso, donde está parado. El World lo vuelve a poner en escena.
+func drop_carried_item() -> void:
+	var item := release_item()
+	if item:
+		item_dropped.emit(item, global_position)
 
 
 ## Frena todo y se queda quieto.

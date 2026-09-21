@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" path="res://Scenes/chair.tscn" id="5_chair"]
 [ext_resource type="PackedScene" path="res://Scenes/computer.tscn" id="6_computer"]
 [ext_resource type="PackedScene" path="res://Scenes/obstacle.tscn" id="7_obstacle"]
+[ext_resource type="PackedScene" path="res://Scenes/lamp.tscn" id="8_lamp"]
+[ext_resource type="PackedScene" path="res://Scenes/trash_bin.tscn" id="9_trash"]
+[ext_resource type="PackedScene" path="res://Scenes/book.tscn" id="10_book"]
+[ext_resource type="PackedScene" path="res://Scenes/pizza_box.tscn" id="11_pizza"]
+[ext_resource type="PackedScene" path="res://Scenes/dirty_shirt.tscn" id="12_shirt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
 parsed_geometry_type = 1
@@ -27,20 +32,44 @@ navigation_polygon = SubResource("NavigationPolygon_world")
 y_sort_enabled = true
 
 [node name="Bed" parent="Props" instance=ExtResource("4_bed")]
-position = Vector2(192, 192)
+position = Vector2(192, 128)
 
-[node name="Chair" parent="Props" instance=ExtResource("5_chair")]
-position = Vector2(-128, 160)
+[node name="Lamp" parent="Props" instance=ExtResource("8_lamp")]
+position = Vector2(224, 144)
 
 [node name="Computer" parent="Props" instance=ExtResource("6_computer")]
-position = Vector2(64, 96)
+position = Vector2(0, 64)
+
+[node name="Chair" parent="Props" instance=ExtResource("5_chair")]
+position = Vector2(-96, 144)
+
+[node name="TrashBin" parent="Props" instance=ExtResource("9_trash")]
+position = Vector2(-160, 144)
 
 [node name="Crate" parent="Props" instance=ExtResource("7_obstacle")]
-position = Vector2(-96, 208)
+position = Vector2(0, 192)
+
+[node name="Book" parent="Props" instance=ExtResource("10_book")]
+position = Vector2(96, 112)
+
+[node name="PizzaBox" parent="Props" instance=ExtResource("11_pizza")]
+position = Vector2(-32, 144)
+
+[node name="DirtyShirt" parent="Props" instance=ExtResource("12_shirt")]
+position = Vector2(64, 224)
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
-position = Vector2(0, 128)
+position = Vector2(32, 144)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Hint" type="Label" parent="Hud"]
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 620.0
+offset_bottom = 34.0
+text = "Click: caminar / usar / agarrar   ·   Click derecho: soltar lo que llevás"

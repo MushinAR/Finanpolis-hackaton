@@ -1,12 +1,10 @@
 class_name State
 extends Node
-## Base de todos los estados del Player. Cada estado hereda de acá y pisa lo que necesite.
+## Base de todos los estados (del Player, de la compu, de la lámpara...).
+## Cada estado hereda de acá (o de una base más específica, como PlayerState) y pisa lo que necesite.
 
 ## Se la asigna la StateMachine al arrancar.
 var state_machine: StateMachine
-
-## El Player dueño de la escena. Los estados lo usan para moverlo y animarlo.
-@onready var player: Player = owner as Player
 
 
 ## Al entrar al estado. `msg` trae datos del estado anterior (destino, objeto, etc.).

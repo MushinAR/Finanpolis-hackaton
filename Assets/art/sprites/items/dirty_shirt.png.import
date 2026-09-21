@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blk8m70vfb8a7"
-path="res://.godot/imported/computer.png-0d9cf60a216542daf34c2474d14976e8.ctex"
+uid="uid://dha0lrkwrp57s"
+path="res://.godot/imported/dirty_shirt.png-95ab1f50327bab6357418f54eff897dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/art/sprites/props/computer.png"
-dest_files=["res://.godot/imported/computer.png-0d9cf60a216542daf34c2474d14976e8.ctex"]
+source_file="res://Assets/art/sprites/items/dirty_shirt.png"
+dest_files=["res://.godot/imported/dirty_shirt.png-95ab1f50327bab6357418f54eff897dc.ctex"]
 
 [params]
 

@@ -10,3 +10,5 @@ extends Resource
 @export var facing: StringName = &"se"
 ## Cuánto dura en segundos. 0 = hasta que el jugador haga otra cosa (dormir, sentarse).
 @export_range(0.0, 600.0, 0.5, "suffix:s") var duration: float = 0.0
+## Si es true, el prop se queda con el item que el jugador lleve (ej: el basurero).
+@export var accepts_items: bool = false

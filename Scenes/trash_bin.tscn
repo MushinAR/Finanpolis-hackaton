@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/prop.tscn" id="1_prop"]
+[ext_resource type="Resource" path="res://Data/props/trash_bin.tres" id="2_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/trash_bin.png" id="3_tex"]
+
+[node name="TrashBin" instance=ExtResource("1_prop")]
+data = ExtResource("2_data")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("3_tex")

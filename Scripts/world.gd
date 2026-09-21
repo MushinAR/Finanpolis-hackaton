@@ -14,13 +14,27 @@ func _ready() -> void:
 	for child in props.get_children():
 		if child is Prop:
 			child.requested.connect(player.interact_with)
+		elif child is Item:
+			child.requested.connect(player.pick_up)
+	player.item_dropped.connect(_on_item_dropped)
 	camera.global_position = player.global_position
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Click en el piso. Los clicks sobre props los agarra el propio Prop.
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if not (event is InputEventMouseButton and event.pressed):
+		return
+	# Click izquierdo en el piso: caminar. Los clicks sobre props e items los agarran ellos mismos.
+	if event.button_index == MOUSE_BUTTON_LEFT:
 		player.move_to(get_global_mouse_position())
+	# Click derecho: ir hasta ahí y soltar lo que lleve.
+	elif event.button_index == MOUSE_BUTTON_RIGHT:
+		player.drop_item_at(get_global_mouse_position())
+
+
+# El Player soltó un item: lo devolvemos a la escena, en el piso.
+func _on_item_dropped(item: Item, at_position: Vector2) -> void:
+	props.add_child(item)
+	item.global_position = at_position
 
 
 func _process(_delta: float) -> void:

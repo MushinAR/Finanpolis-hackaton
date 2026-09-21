@@ -8,3 +8,4 @@ display_name = "Computadora"
 animation = &"use_computer"
 facing = &"nw"
 duration = 5.0
+accepts_items = false

@@ -1,8 +1,10 @@
-extends State
+extends PlayerState
 ## Camina hasta un punto esquivando obstáculos (usa el NavigationAgent2D del Player).
-## Si viene con un objeto, al llegar pasa a "interacting".
+## Al llegar, según lo que venga en el mensaje, pasa a usar un prop, agarrar/soltar un item, o a idle.
 ##
-## msg: { "target": Vector2 (global), "prop": Prop (opcional) }
+## msg: { "target": Vector2 (global),
+##        "prop": Prop (opcional),
+##        "action": &"pick" | &"drop" (opcional), "item": Item (opcional, para pick) }
 
 ## Si avanza menos que esta fracción de la velocidad durante STUCK_TIME, se rinde.
 const STUCK_SPEED_RATIO: float = 0.2
@@ -10,12 +12,16 @@ const STUCK_TIME: float = 0.4
 
 var target: Vector2
 var pending_prop: Prop
+var pending_action: StringName
+var pending_item: Item
 var stuck_timer: float = 0.0
 
 
 func enter(msg: Dictionary = {}) -> void:
 	target = msg.get("target", player.global_position)
 	pending_prop = msg.get("prop")
+	pending_action = msg.get("action", &"")
+	pending_item = msg.get("item")
 	stuck_timer = 0.0
 	player.nav_agent.target_position = target
 
@@ -23,6 +29,8 @@ func enter(msg: Dictionary = {}) -> void:
 func exit() -> void:
 	player.velocity = Vector2.ZERO
 	pending_prop = null
+	pending_item = null
+	pending_action = &""
 
 
 func physics_update(delta: float) -> void:
@@ -47,10 +55,15 @@ func physics_update(delta: float) -> void:
 
 
 func _arrive() -> void:
-	var prop := pending_prop  # exit() lo limpia, por eso lo guardamos antes
+	# exit() limpia los pendientes, por eso los guardamos antes.
+	var prop := pending_prop
+	var action := pending_action
+	var item := pending_item
 	player.arrived.emit()
 	if prop:
 		player.global_position = target
 		state_machine.switch_state(&"interacting", {"prop": prop})
+	elif action != &"":
+		state_machine.switch_state(&"handling", {"action": action, "item": item})
 	else:
 		state_machine.switch_state(&"idle")

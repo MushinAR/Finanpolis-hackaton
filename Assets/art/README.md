@@ -22,7 +22,11 @@ Para sumar tiles nuevos, agregarlos a la derecha en la misma imagen y crearlos e
 
 ## Props — `sprites/props/*.png`
 
-Un PNG de 64×64 por objeto: `bed.png`, `chair.png`, `computer.png` y `crate.png` (caja obstáculo). Objetos más grandes que un tile se pueden dibujar más grandes; avisar para ajustar el punto de apoyo y la colisión.
+Un PNG de 64×64 por objeto: `bed`, `chair`, `trash_bin` y `crate` (caja obstáculo). Los que cambian de estado tienen una imagen por estado: `computer_off`, `computer_booting`, `computer_on` y `lamp_off`, `lamp_on`. Objetos más grandes que un tile se pueden dibujar más grandes; avisar para ajustar el punto de apoyo y la colisión.
+
+## Items — `sprites/items/*.png`
+
+Cosas que el jugador carga: `book.png`, `pizza_box.png` y `dirty_shirt.png`. 64×64, con la base en el píxel (32, 48). Cuando el Player los lleva, aparecen sobre su cabeza (esa posición se ajusta en el nodo `CarrySlot` de `player.tscn`).
 
 ## Player — `sprites/player/player_<animación>_<dirección>.png`
 

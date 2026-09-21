@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dmj28v5bsb5nd" path="res://Scripts/state_machine/moving.gd" id="4_moving"]
 [ext_resource type="Script" uid="uid://c67mc5uinvrpx" path="res://Scripts/state_machine/interacting.gd" id="5_interacting"]
 [ext_resource type="Resource" uid="uid://bw0eyucvf4ts" path="res://Data/player_config.tres" id="6_cfg"]
+[ext_resource type="Script" path="res://Scripts/state_machine/handling.gd" id="7_handling"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 6.0
@@ -26,6 +27,9 @@ target_desired_distance = 3.0
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2063005609]
 offset = Vector2(0, -16)
 
+[node name="CarrySlot" type="Marker2D" parent="."]
+position = Vector2(0, -36)
+
 [node name="StateMachine" type="Node" parent="." unique_id=1994856861]
 script = ExtResource("2_sm")
 
@@ -37,3 +41,6 @@ script = ExtResource("4_moving")
 
 [node name="Interacting" type="Node" parent="StateMachine" unique_id=848978978]
 script = ExtResource("5_interacting")
+
+[node name="Handling" type="Node" parent="StateMachine"]
+script = ExtResource("7_handling")

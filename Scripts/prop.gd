@@ -12,6 +12,9 @@ signal interaction_started(player: Player)
 ## Los efectos (energía, plata, etc.) se enganchan acá y se aplican solo si completed es true.
 signal interaction_finished(player: Player, completed: bool)
 
+## Le entregaron un item (solo props con data.accepts_items).
+signal item_received(item: Item)
+
 @export var data: PropData
 
 var is_occupied: bool = false
@@ -50,6 +53,12 @@ func end_interaction(player: Player, completed: bool) -> void:
 	is_occupied = false
 	user = null
 	interaction_finished.emit(player, completed)
+
+
+## Se queda con un item que le dan (el basurero lo tira). Los props especiales pueden pisarla.
+func receive_item(item: Item) -> void:
+	item_received.emit(item)
+	item.queue_free()
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
