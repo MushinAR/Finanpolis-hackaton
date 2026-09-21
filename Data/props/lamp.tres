@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_data")
-display_name = "Lámpara"
+display_name = "Lámpara de noche"
 animation = &"idle"
 facing = &"nw"
 duration = 0.6

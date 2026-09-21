@@ -16,6 +16,8 @@ signal interaction_finished(player: Player, completed: bool)
 signal item_received(item: Item)
 
 @export var data: PropData
+## Si es false, no ocupa lugar en el piso (ej: un interruptor pegado a la pared).
+@export var blocks_movement: bool = true
 
 var is_occupied: bool = false
 var user: Player
@@ -27,6 +29,12 @@ var user: Player
 
 func _ready() -> void:
 	input_event.connect(_on_input_event)
+	if not blocks_movement:
+		var body := get_node_or_null("Body")
+		if body:
+			# Sale del grupo ya mismo para que la navegación no lo cuente como obstáculo.
+			body.remove_from_group("nav_obstacles")
+			body.queue_free()
 
 
 ## Dónde se para el Player para usarlo (y donde queda al terminar).

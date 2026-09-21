@@ -1,26 +1,13 @@
 class_name Lamp
-extends Prop
-## Lámpara. Su máquina de estados es simple: off <-> on.
-## Cada vez que el jugador la usa hasta el final, cambia de estado.
+extends TogglableProp
+## Lámpara de noche: al prenderla da un poco de luz cálida alrededor.
 
-@export var texture_off: Texture2D
-@export var texture_on: Texture2D
+## Intensidad con la lámpara prendida (la del techo es bastante más fuerte).
+@export var light_energy: float = 0.8
 
-@onready var state_machine: StateMachine = $StateMachine
-@onready var sprite: Sprite2D = $Sprite
+@onready var light: PointLight2D = $Light
 
 
-func _ready() -> void:
-	super()
-	interaction_finished.connect(_on_released)
-
-
-func set_light(is_on: bool) -> void:
-	sprite.texture = texture_on if is_on else texture_off
-
-
-func _on_released(_player: Player, completed: bool) -> void:
-	if not completed:
-		return
-	var next := &"off" if state_machine.current_state.name == &"On" else &"on"
-	state_machine.switch_state(next)
+func apply_state(is_on: bool) -> void:
+	super(is_on)
+	LightUtils.fade(light, light_energy if is_on else 0.0)

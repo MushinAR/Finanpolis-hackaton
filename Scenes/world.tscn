@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" path="res://Scenes/computer.tscn" id="6_computer"]
 [ext_resource type="PackedScene" path="res://Scenes/obstacle.tscn" id="7_obstacle"]
 [ext_resource type="PackedScene" path="res://Scenes/lamp.tscn" id="8_lamp"]
+[ext_resource type="PackedScene" path="res://Scenes/light_switch.tscn" id="13_switch"]
+[ext_resource type="PackedScene" path="res://Scenes/ceiling_light.tscn" id="14_ceiling"]
+[ext_resource type="Script" path="res://Scripts/lighting/ambient_light.gd" id="15_ambient"]
 [ext_resource type="PackedScene" path="res://Scenes/trash_bin.tscn" id="9_trash"]
 [ext_resource type="PackedScene" path="res://Scenes/book.tscn" id="10_book"]
 [ext_resource type="PackedScene" path="res://Scenes/pizza_box.tscn" id="11_pizza"]
@@ -34,7 +37,7 @@ y_sort_enabled = true
 [node name="Bed" parent="Props" instance=ExtResource("4_bed")]
 position = Vector2(192, 128)
 
-[node name="Lamp" parent="Props" instance=ExtResource("8_lamp")]
+[node name="NightLamp" parent="Props" instance=ExtResource("8_lamp")]
 position = Vector2(224, 144)
 
 [node name="Computer" parent="Props" instance=ExtResource("6_computer")]
@@ -49,6 +52,10 @@ position = Vector2(-160, 144)
 [node name="Crate" parent="Props" instance=ExtResource("7_obstacle")]
 position = Vector2(0, 192)
 
+[node name="LightSwitch" parent="Props" node_paths=PackedStringArray("target") instance=ExtResource("13_switch")]
+position = Vector2(-64, 96)
+target = NodePath("../../CeilingLight")
+
 [node name="Book" parent="Props" instance=ExtResource("10_book")]
 position = Vector2(96, 112)
 
@@ -57,6 +64,12 @@ position = Vector2(-32, 144)
 
 [node name="DirtyShirt" parent="Props" instance=ExtResource("12_shirt")]
 position = Vector2(64, 224)
+
+[node name="CeilingLight" parent="." instance=ExtResource("14_ceiling")]
+position = Vector2(32, 160)
+
+[node name="AmbientLight" type="CanvasModulate" parent="."]
+script = ExtResource("15_ambient")
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
 position = Vector2(32, 144)
