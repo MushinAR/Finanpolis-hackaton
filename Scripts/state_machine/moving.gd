@@ -32,13 +32,13 @@ func physics_update(delta: float) -> void:
 		return
 
 	var to_next := player.nav_agent.get_next_path_position() - player.global_position
-	player.velocity = CoordinateUtils.iso_velocity(to_next, player.config.speed)
+	player.velocity = CoordinateUtils.iso_velocity(to_next, player.speed)
 	player.face_towards(to_next)
 	player.play_animation(&"walk")
 	player.move_and_slide()
 
 	# Anti-atasco: si chocó con algo y no avanza, corta.
-	if player.get_real_velocity().length() < player.config.speed * STUCK_SPEED_RATIO:
+	if player.get_real_velocity().length() < player.speed * STUCK_SPEED_RATIO:
 		stuck_timer += delta
 		if stuck_timer >= STUCK_TIME:
 			state_machine.switch_state(&"idle")

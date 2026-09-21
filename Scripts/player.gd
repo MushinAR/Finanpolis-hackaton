@@ -17,6 +17,10 @@ signal state_changed(state_name: StringName)
 ## Valores del Player (velocidad, direcciones, animaciones). Ver Data/player_config.tres.
 @export var config: PlayerConfig
 
+## Velocidad actual sobre el piso, en px/s. Arranca con el valor de config.speed
+## y se puede modificar en juego (cansancio, bonus, etc.).
+var speed: float
+
 ## Para dónde mira (se, sw, nw, ne). Define el sufijo de la animación.
 var facing: StringName = &"se"
 ## Prop que está usando ahora (null si ninguno).
@@ -28,6 +32,7 @@ var current_prop: Prop
 
 
 func _ready() -> void:
+	speed = config.speed
 	sprite.sprite_frames = SpriteFramesLoader.build(config, "player")
 	state_machine.state_changed.connect(state_changed.emit)
 
