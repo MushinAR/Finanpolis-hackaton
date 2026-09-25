@@ -17,3 +17,6 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 
+
+# Notas de trabajo locales (no se suben)
+docs/

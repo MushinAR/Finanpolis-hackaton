@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PropData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/prop_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+display_name = "Lámpara de noche"
+animation = &"idle"
+facing = &"nw"
+duration = 0.6
+accepts_items = false

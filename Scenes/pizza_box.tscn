@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/item.tscn" id="1_item"]
+[ext_resource type="Resource" path="res://Data/items/pizza_box.tres" id="2_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/items/pizza_box.png" id="3_tex"]
+
+[node name="PizzaBox" instance=ExtResource("1_item")]
+data = ExtResource("2_data")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("3_tex")

@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/prop.tscn" id="1_prop"]
+[ext_resource type="Script" path="res://Scripts/props/computer.gd" id="2_script"]
+[ext_resource type="Resource" path="res://Data/props/computer.tres" id="3_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/computer_off.png" id="4_off"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/computer_booting.png" id="5_boot"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/computer_on.png" id="6_on"]
+[ext_resource type="Script" path="res://Scripts/state_machine/state_machine.gd" id="7_sm"]
+[ext_resource type="Script" path="res://Scripts/props/states/computer_off.gd" id="8_off"]
+[ext_resource type="Script" path="res://Scripts/props/states/computer_booting.gd" id="9_booting"]
+[ext_resource type="Script" path="res://Scripts/props/states/computer_in_use.gd" id="10_inuse"]
+[ext_resource type="Script" path="res://Scripts/props/states/computer_on.gd" id="11_on"]
+
+[node name="Computer" instance=ExtResource("1_prop")]
+script = ExtResource("2_script")
+screen_off = ExtResource("4_off")
+screen_booting = ExtResource("5_boot")
+screen_on = ExtResource("6_on")
+data = ExtResource("3_data")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("4_off")
+
+[node name="StateMachine" type="Node" parent="." index="5"]
+script = ExtResource("7_sm")
+initial_state = &"off"
+
+[node name="Off" type="Node" parent="StateMachine"]
+script = ExtResource("8_off")
+
+[node name="Booting" type="Node" parent="StateMachine"]
+script = ExtResource("9_booting")
+
+[node name="InUse" type="Node" parent="StateMachine"]
+script = ExtResource("10_inuse")
+
+[node name="On" type="Node" parent="StateMachine"]
+script = ExtResource("11_on")

@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/prop.tscn" id="1_prop"]
+[ext_resource type="Script" path="res://Scripts/props/light_switch.gd" id="2_script"]
+[ext_resource type="Resource" path="res://Data/props/light_switch.tres" id="3_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/switch_off.png" id="4_off"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/switch_on.png" id="5_on"]
+[ext_resource type="Script" path="res://Scripts/state_machine/state_machine.gd" id="6_sm"]
+[ext_resource type="Script" path="res://Scripts/props/states/toggle_off.gd" id="7_off"]
+[ext_resource type="Script" path="res://Scripts/props/states/toggle_on.gd" id="8_on"]
+
+[node name="LightSwitch" instance=ExtResource("1_prop")]
+script = ExtResource("2_script")
+texture_off = ExtResource("4_off")
+texture_on = ExtResource("5_on")
+blocks_movement = false
+data = ExtResource("3_data")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("5_on")
+
+[node name="StateMachine" type="Node" parent="." index="5"]
+script = ExtResource("6_sm")
+
+[node name="Off" type="Node" parent="StateMachine"]
+script = ExtResource("7_off")
+
+[node name="On" type="Node" parent="StateMachine"]
+script = ExtResource("8_on")

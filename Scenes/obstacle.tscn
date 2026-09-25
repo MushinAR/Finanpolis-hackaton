@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/crate.png" id="1_tex"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_footprint"]
+points = PackedVector2Array(0, -14, 28, 0, 0, 14, -28, 0)
+
+[node name="Obstacle" type="StaticBody2D" groups=["nav_obstacles"]]
+y_sort_enabled = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_tex")
+offset = Vector2(0, -16)
+
+[node name="Footprint" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_footprint")

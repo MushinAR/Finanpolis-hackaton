@@ -1,0 +1,38 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/prop.tscn" id="1_prop"]
+[ext_resource type="Script" path="res://Scripts/props/lamp.gd" id="2_script"]
+[ext_resource type="Resource" path="res://Data/props/lamp.tres" id="3_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/lamp_off.png" id="4_off"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/lamp_on.png" id="5_on"]
+[ext_resource type="Texture2D" path="res://Assets/art/lights/light_soft.tres" id="6_light"]
+[ext_resource type="Script" path="res://Scripts/state_machine/state_machine.gd" id="7_sm"]
+[ext_resource type="Script" path="res://Scripts/props/states/toggle_off.gd" id="8_off"]
+[ext_resource type="Script" path="res://Scripts/props/states/toggle_on.gd" id="9_on"]
+
+[node name="Lamp" instance=ExtResource("1_prop")]
+script = ExtResource("2_script")
+light_energy = 0.8
+texture_off = ExtResource("4_off")
+texture_on = ExtResource("5_on")
+data = ExtResource("3_data")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("4_off")
+
+[node name="Light" type="PointLight2D" parent="." index="5"]
+position = Vector2(0, -24)
+enabled = false
+color = Color(1, 0.8, 0.5, 1)
+energy = 0.0
+texture = ExtResource("6_light")
+texture_scale = 1.1
+
+[node name="StateMachine" type="Node" parent="." index="6"]
+script = ExtResource("7_sm")
+
+[node name="Off" type="Node" parent="StateMachine"]
+script = ExtResource("8_off")
+
+[node name="On" type="Node" parent="StateMachine"]
+script = ExtResource("9_on")

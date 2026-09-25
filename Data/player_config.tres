@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="PlayerConfig" format=3 uid="uid://bw0eyucvf4ts"]
+
+[ext_resource type="Script" uid="uid://bhy5x7emh1jds" path="res://Scripts/resources/player_config.gd" id="1_cfg"]
+
+[resource]
+script = ExtResource("1_cfg")
