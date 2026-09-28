@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/stat_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/ui/icons/salud.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_data")
+id = &"salud"
+display_name = "Salud"
+icon = ExtResource("2_icon")
+color = Color(0.851, 0.325, 0.31, 1)
+min_value = 0.0
+max_value = 100.0
+initial_value = 90.0
+low_threshold = 30.0
+high_threshold = 101.0
+inverted = false
+change_per_minute = 0.0
+display_mode = "bar"
+prefix = ""

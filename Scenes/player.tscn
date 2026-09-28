@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://c67mc5uinvrpx" path="res://Scripts/state_machine/interacting.gd" id="5_interacting"]
 [ext_resource type="Resource" uid="uid://bw0eyucvf4ts" path="res://Data/player_config.tres" id="6_cfg"]
 [ext_resource type="Script" path="res://Scripts/state_machine/handling.gd" id="7_handling"]
+[ext_resource type="Script" path="res://Scripts/stats/player_stats.gd" id="8_stats"]
+[ext_resource type="Resource" path="res://Data/stats/stat_set.tres" id="9_stat_set"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 6.0
@@ -44,3 +46,7 @@ script = ExtResource("5_interacting")
 
 [node name="Handling" type="Node" parent="StateMachine"]
 script = ExtResource("7_handling")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("8_stats")
+stat_set = ExtResource("9_stat_set")

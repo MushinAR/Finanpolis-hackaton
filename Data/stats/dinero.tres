@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/stat_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/ui/icons/dinero.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_data")
+id = &"dinero"
+display_name = "Dinero"
+icon = ExtResource("2_icon")
+color = Color(0.298, 0.686, 0.427, 1)
+min_value = 0.0
+max_value = 0.0
+initial_value = 500.0
+low_threshold = 100.0
+high_threshold = 999999.0
+inverted = false
+change_per_minute = 0.0
+display_mode = "number"
+prefix = "$"

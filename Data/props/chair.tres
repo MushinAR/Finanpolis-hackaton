@@ -9,3 +9,8 @@ animation = &"sit"
 facing = &"se"
 duration = 0.0
 accepts_items = false
+
+effects_per_second = {
+"energia": 1.0,
+"estres": -1.0
+}

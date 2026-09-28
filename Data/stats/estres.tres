@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/stat_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://Assets/art/ui/icons/estres.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_data")
+id = &"estres"
+display_name = "Estrés"
+icon = ExtResource("2_icon")
+color = Color(0.541, 0.541, 0.541, 1)
+min_value = 0.0
+max_value = 100.0
+initial_value = 20.0
+low_threshold = -1.0
+high_threshold = 75.0
+inverted = true
+change_per_minute = 0.3
+display_mode = "bar"
+prefix = ""

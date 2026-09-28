@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/book.tscn" id="10_book"]
 [ext_resource type="PackedScene" path="res://Scenes/pizza_box.tscn" id="11_pizza"]
 [ext_resource type="PackedScene" path="res://Scenes/dirty_shirt.tscn" id="12_shirt"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/hud.tscn" id="16_hud"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
 parsed_geometry_type = 1
@@ -81,8 +82,13 @@ position_smoothing_enabled = true
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="Hint" type="Label" parent="Hud"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
 offset_left = 12.0
-offset_top = 8.0
+offset_top = -34.0
 offset_right = 620.0
-offset_bottom = 34.0
+offset_bottom = -8.0
 text = "Click: caminar / usar / agarrar   ·   Click derecho: soltar lo que llevás"
+
+[node name="StatsHud" parent="." instance=ExtResource("16_hud")]

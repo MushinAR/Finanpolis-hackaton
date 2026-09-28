@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StatSet" format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/stat_set.gd" id="1_set"]
+[ext_resource type="Resource" path="res://Data/stats/dinero.tres" id="1_dinero"]
+[ext_resource type="Resource" path="res://Data/stats/energia.tres" id="2_energia"]
+[ext_resource type="Resource" path="res://Data/stats/felicidad.tres" id="3_felicidad"]
+[ext_resource type="Resource" path="res://Data/stats/salud.tres" id="4_salud"]
+[ext_resource type="Resource" path="res://Data/stats/estres.tres" id="5_estres"]
+
+[resource]
+script = ExtResource("1_set")
+stats = Array[Resource("res://Scripts/resources/stat_data.gd")]([ExtResource("1_dinero"), ExtResource("2_energia"), ExtResource("3_felicidad"), ExtResource("4_salud"), ExtResource("5_estres")])

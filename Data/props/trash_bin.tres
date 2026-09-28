@@ -9,3 +9,8 @@ animation = &"idle"
 facing = &"nw"
 duration = 0.5
 accepts_items = true
+
+effects_on_finish = {
+"felicidad": 2.0,
+"salud": 1.0
+}
