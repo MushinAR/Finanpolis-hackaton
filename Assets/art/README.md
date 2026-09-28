@@ -44,6 +44,22 @@ Cada archivo es una **tira horizontal** de cuadros de 64×64. La cantidad de cua
 
 Placeholder actual: idle 1 cuadro, walk 4, sit 1, sleep 1, use_computer 2.
 
+## Íconos del HUD — `ui/icons/*.png`
+
+Un PNG de **48×48** por variable del jugador, con fondo transparente y el dibujo centrado: `dinero`, `energia`, `felicidad`, `salud` y `estres`. En pantalla se muestran a 28×28, así que conviene dibujarlos a 48 y dejar que el HUD los achique.
+
+Los de hoy salieron de la paleta que pasó diseño y son **provisorios**. Cada ícono tiene su color en `Data/stats/<variable>.tres` (campo `color`), que es también el color de su barra:
+
+| Variable | Archivo | Color |
+|---|---|---|
+| Dinero | `dinero.png` | `#4CAF6D` |
+| Energía | `energia.png` | `#E8B84B` |
+| Felicidad | `felicidad.png` | `#E58A4E` |
+| Salud | `salud.png` | `#D9534F` |
+| Estrés | `estres.png` | `#8A8A8A` |
+
+La forma de la barra (alto, bordes, esquinas redondeadas, separación) se edita en `Scenes/ui/stat_bar.tscn`, sin tocar código. Para cambiar el HUD entero se reemplaza `Scenes/ui/hud.tscn`: ninguna otra escena depende de él.
+
 ## Si cambia el tamaño o la cantidad de direcciones
 
 Todo se configura en `Data/player_config.tres` (desde el inspector de Godot): tamaño de cuadro, 4 u 8 direcciones, velocidad de cada animación y carpeta. Para sumar una animación nueva, agregarla ahí y soltar los PNG.

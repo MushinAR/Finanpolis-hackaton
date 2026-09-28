@@ -9,3 +9,10 @@ animation = &"use_computer"
 facing = &"nw"
 duration = 5.0
 accepts_items = false
+
+effects_on_finish = {
+"dinero": 25.0,
+"energia": -5.0,
+"estres": 4.0,
+"felicidad": 2.0
+}

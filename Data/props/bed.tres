@@ -9,3 +9,9 @@ animation = &"sleep"
 facing = &"se"
 duration = 0.0
 accepts_items = false
+
+effects_per_second = {
+"energia": 8.0,
+"estres": -2.0,
+"salud": 0.5
+}
