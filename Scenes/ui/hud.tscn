@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" path="res://Scenes/ui/time_controls.tscn" id="3_time"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_strip"]
-content_margin_left = 20.0
-content_margin_top = 8.0
-content_margin_right = 20.0
-content_margin_bottom = 8.0
+content_margin_left = 16.0
+content_margin_top = 7.0
+content_margin_right = 16.0
+content_margin_bottom = 7.0
 bg_color = Color(0.969, 0.961, 0.949, 1)
 border_width_bottom = 1
 border_color = Color(0.541, 0.541, 0.541, 0.4)
@@ -29,7 +29,7 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_strip")
 
 [node name="Row" type="HBoxContainer" parent="Strip"]
-theme_override_constants/separation = 20
+theme_override_constants/separation = 24
 
 [node name="Money" parent="Strip/Row" instance=ExtResource("2_money")]
 unique_name_in_owner = true
@@ -41,7 +41,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_divider")
 [node name="Bars" type="HBoxContainer" parent="Strip/Row"]
 unique_name_in_owner = true
 size_flags_vertical = 4
-theme_override_constants/separation = 24
+theme_override_constants/separation = 14
 
 [node name="Spacer" type="Control" parent="Strip/Row"]
 size_flags_horizontal = 3

@@ -39,12 +39,12 @@ fondo `#F7F5F2` sólido y una única línea abajo de 1 px `#8A8A8A` al 40 %. Tre
 la misma línea base, separados por divisorias finas: **dinero**, **bienestar**, **tiempo y fecha**.
 
 - **Bienestar** (`Scenes/ui/stat_bar.tscn`): ícono + barra, nunca el número. La barra lleva
-  contenedor con borde, relleno sólido de 12 px de alto y esquinas tipo cápsula.
+  contenedor con borde, relleno sólido de 8 px de alto (el mínimo de la norma, como el mock) y esquinas tipo cápsula. El ícono va a 20 px y las cuatro van pegadas entre sí, separadas del dinero.
   El color sale del nivel y se actualiza con cada cambio: arriba de 60 % verde, entre 30 y 60
   amarillo, abajo de 30 rojo. El **estrés va al revés** (poco estrés = verde), por su marca
   `inverted` en `Data/stats/estres.tres`.
 - **Dinero** (`Scenes/ui/money_display.tscn`): contenedor propio destacado, fondo sutil
-  Verde-Estabilidad, ícono en círculo relleno y número a 24 px. Nunca se agrupa igual que el
+  Verde-Estabilidad, ícono en círculo relleno y número en Numero-Stat. **Pendiente de confirmar:** la tabla pide 24 px para el dinero, pero el mock lo muestra a 20 px con la cápsula más baja; está puesto a 20 px para respetar el mock. Nunca se agrupa igual que el
   bienestar: es la variable central y se lee con más peso.
 - **Tiempo** (`Scenes/ui/time_controls.tscn`): x1 / x2 / x4 / x8, los cuatro pegados en un
   solo grupo. **No hay pausa.** El juego puede forzar x1 ante un evento importante con

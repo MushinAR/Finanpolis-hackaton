@@ -51,7 +51,7 @@ La interfaz se rige por `Docs/Finanpolis_UI_Guidelines.pdf` (resumen para progra
 
 Un SVG por variable, con el color ya puesto en el dibujo: `dinero`, `energia`, `felicidad`,
 `salud` y `estres`. Godot los importa solo; para cambiarlos se reemplaza el archivo con el
-mismo nombre. En el HUD se muestran a 24 px (26 el del dinero, dentro de su círculo).
+mismo nombre. En el HUD se muestran a 20 px, el del dinero dentro de un círculo de 28 px.
 
 | Variable | Archivo | Color base |
 |---|---|---|
