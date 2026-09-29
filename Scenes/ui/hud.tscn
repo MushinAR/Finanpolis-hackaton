@@ -35,6 +35,9 @@ theme_override_constants/separation = 24
 unique_name_in_owner = true
 size_flags_vertical = 4
 
+[node name="SpacerLeft" type="Control" parent="Strip/Row"]
+size_flags_horizontal = 3
+
 [node name="Divider1" type="VSeparator" parent="Strip/Row"]
 theme_override_styles/separator = SubResource("StyleBoxLine_divider")
 
@@ -43,11 +46,11 @@ unique_name_in_owner = true
 size_flags_vertical = 4
 theme_override_constants/separation = 14
 
-[node name="Spacer" type="Control" parent="Strip/Row"]
-size_flags_horizontal = 3
-
 [node name="Divider2" type="VSeparator" parent="Strip/Row"]
 theme_override_styles/separator = SubResource("StyleBoxLine_divider")
+
+[node name="SpacerRight" type="Control" parent="Strip/Row"]
+size_flags_horizontal = 3
 
 [node name="Time" parent="Strip/Row" instance=ExtResource("3_time")]
 unique_name_in_owner = true
