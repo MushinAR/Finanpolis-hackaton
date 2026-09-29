@@ -44,21 +44,33 @@ Cada archivo es una **tira horizontal** de cuadros de 64×64. La cantidad de cua
 
 Placeholder actual: idle 1 cuadro, walk 4, sit 1, sleep 1, use_computer 2.
 
-## Íconos del HUD — `ui/icons/*.png`
+## Interfaz — `ui/icons/*.svg` y `Assets/fonts/`
 
-Un PNG de **48×48** por variable del jugador, con fondo transparente y el dibujo centrado: `dinero`, `energia`, `felicidad`, `salud` y `estres`. En pantalla se muestran a 28×28, así que conviene dibujarlos a 48 y dejar que el HUD los achique.
+La interfaz se rige por `Docs/Finanpolis_UI_Guidelines.pdf` (resumen para programar en
+`Docs/ui_guidelines.md`). **Colores, tipografía y componentes salen de ahí, siempre.**
 
-Los de hoy salieron de la paleta que pasó diseño y son **provisorios**. Cada ícono tiene su color en `Data/stats/<variable>.tres` (campo `color`), que es también el color de su barra:
+Un SVG por variable, con el color ya puesto en el dibujo: `dinero`, `energia`, `felicidad`,
+`salud` y `estres`. Godot los importa solo; para cambiarlos se reemplaza el archivo con el
+mismo nombre. En el HUD se muestran a 24 px (26 el del dinero, dentro de su círculo).
 
-| Variable | Archivo | Color |
+| Variable | Archivo | Color base |
 |---|---|---|
-| Dinero | `dinero.png` | `#4CAF6D` |
-| Energía | `energia.png` | `#E8B84B` |
-| Felicidad | `felicidad.png` | `#E58A4E` |
-| Salud | `salud.png` | `#D9534F` |
-| Estrés | `estres.png` | `#8A8A8A` |
+| Dinero | `dinero.svg` | Verde-Estabilidad `#4CAF6D` |
+| Energía | `energia.svg` | Amarillo-Aviso `#E8B84B` |
+| Felicidad | `felicidad.svg` | Naranja-Hogar `#E58A4E` |
+| Salud | `salud.svg` | Rojo-Riesgo `#D9534F` |
+| Estrés | `estres.svg` | Gris-Neutro `#8A8A8A` |
 
-La forma de la barra (alto, bordes, esquinas redondeadas, separación) se edita en `Scenes/ui/stat_bar.tscn`, sin tocar código. Para cambiar el HUD entero se reemplaza `Scenes/ui/hud.tscn`: ninguna otra escena depende de él.
+Ojo: ese color base es el del ícono. **Las barras no lo usan**: su color sale del nivel
+(verde / amarillo / rojo, y al revés en el estrés).
+
+Las tipografías son la familia **Poppins** completa, en `Assets/fonts/` (con su licencia
+`OFL.txt`). Es la única fuente de la interfaz y ya está puesta como fuente por defecto del
+proyecto, así que un control nuevo la toma solo.
+
+La forma de cada pieza del HUD se edita en sus escenas, sin tocar código: `stat_bar.tscn`
+(barras), `money_display.tscn` (dinero), `time_controls.tscn` (velocidad y fecha) y
+`hud.tscn` (la franja entera).
 
 ## Si cambia el tamaño o la cantidad de direcciones
 

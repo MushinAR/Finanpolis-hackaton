@@ -1,20 +1,23 @@
 class_name Hud
 extends CanvasLayer
-## La barra de variables del jugador, fija arriba a la izquierda de la pantalla.
+## La franja de arriba: dinero, bienestar y tiempo. Una sola barra anclada al borde
+## superior, de ancho completo (norma de la guía de UI, Docs/ui_guidelines.md).
 ##
-## Se arma sola: busca al PlayerStats y crea un StatBar por cada variable del StatSet,
-## en ese orden. Sumar o sacar una variable es cuestión de editar Data/stats/stat_set.tres.
+## Se arma sola: busca al PlayerStats y reparte cada variable según cómo pida mostrarse
+## (`display_mode`): el dinero va a su contenedor propio y el resto sale como ícono + barra,
+## en el orden de Data/stats/stat_set.tres.
 ##
 ## Es una escena aparte, sin cables a mano: se la suelta en cualquier escena que tenga
-## un Player y funciona. Para probar otro diseño, se la reemplaza entera; nada en el
-## juego depende de este nodo.
+## un Player y funciona. Para probar otro diseño, se la reemplaza entera.
 
 const STAT_BAR := preload("res://Scenes/ui/stat_bar.tscn")
 
 ## Nodo PlayerStats. Vacío = lo busca solo por el grupo "player_stats".
 @export var stats_path: NodePath
 
-@onready var container: HBoxContainer = %Stats
+@onready var money: MoneyDisplay = %Money
+@onready var bars: HBoxContainer = %Bars
+@onready var time_controls: TimeControls = %Time
 
 var stats: PlayerStats
 
@@ -29,9 +32,12 @@ func _ready() -> void:
 		push_warning("Hud: no encontré un PlayerStats en la escena")
 		return
 	for stat in stats.get_stats():
-		var bar: StatBar = STAT_BAR.instantiate()
-		container.add_child(bar)
-		bar.setup(stat)
+		if stat.data.display_mode == "number":
+			money.setup(stat)
+		else:
+			var bar: StatBar = STAT_BAR.instantiate()
+			bars.add_child(bar)
+			bar.setup(stat)
 
 
 func _find_stats() -> PlayerStats:

@@ -11,9 +11,10 @@ extends Resource
 @export var id: StringName = &""
 ## Nombre que se ve en pantalla.
 @export var display_name: String = ""
-## Ícono del HUD (Assets/art/ui/icons/*.png).
+## Ícono del HUD (Assets/art/ui/icons/*.svg). El dibujo ya viene con su color.
 @export var icon: Texture2D
-## Color de la barra y del ícono.
+## Color base del token en la paleta (ver Palette). Lo usan el dinero y los acentos.
+## Las barras de bienestar NO lo usan: su color sale del valor (ver Palette.bar_color).
 @export var color: Color = Color.WHITE
 
 @export_group("Rango")
@@ -39,6 +40,8 @@ extends Resource
 @export_enum("bar", "number") var display_mode: String = "bar"
 ## Se antepone al número (ej: "$").
 @export var prefix: String = ""
+## Separador de miles del número (ej: "46,426"). Vacío = sin separador.
+@export var thousands_separator: String = ","
 
 
 ## False cuando la variable no tiene techo (dinero): no se puede dibujar como barra.
@@ -59,6 +62,14 @@ func ratio(value: float) -> float:
 	return (value - min_value) / (max_value - min_value)
 
 
-## Texto del número, con el prefijo (ej: "$500").
+## Texto del número, con prefijo y separador de miles (ej: "$46,426").
 func format_value(value: float) -> String:
-	return "%s%d" % [prefix, roundi(value)]
+	var digits := str(absi(roundi(value)))
+	if not thousands_separator.is_empty():
+		var grouped := ""
+		for i in range(digits.length()):
+			if i > 0 and (digits.length() - i) % 3 == 0:
+				grouped += thousands_separator
+			grouped += digits[i]
+		digits = grouped
+	return "%s%s%s" % ["-" if value < 0.0 else "", prefix, digits]
