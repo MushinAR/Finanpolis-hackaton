@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dbdkdyqqagkhh"]
+
+[ext_resource type="Script" uid="uid://bobrrovsm80kt" path="res://Scripts/props/door.gd" id="1_miwsh"]
+[ext_resource type="Texture2D" uid="uid://biaypopf1o7q7" path="res://Assets/art/sprites/props/door.png" id="2_5iqfh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5bk5"]
+radius = 20.07
+
+[node name="Door" type="Area2D" unique_id=1758447601]
+y_sort_enabled = true
+script = ExtResource("1_miwsh")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=489924571]
+texture = ExtResource("2_5iqfh")
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1534034398]
+position = Vector2(-9, -3)
+shape = SubResource("CircleShape2D_u5bk5")
+

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dqyql2dyfo6dg"]
+
+[ext_resource type="Script" uid="uid://clq51kjl1phog" path="res://Scripts/world.gd" id="1_world"]
+[ext_resource type="PackedScene" uid="uid://chghaspl1jvpx" path="res://Scenes/floor2.tscn" id="2_floor"]
+[ext_resource type="PackedScene" uid="uid://bh8pv7ns81v1b" path="res://Scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://dbdkdyqqagkhh" path="res://Scenes/door.tscn" id="4_bpb7m"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/popup_card.tscn" id="5_popup"]
+[ext_resource type="PackedScene" uid="uid://cmgf7o6kqoujh" path="res://Scenes/ui/stats_hud.tscn" id="6_j7tay"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_living"]
+parsed_geometry_type = 1
+source_geometry_mode = 2
+source_geometry_group_name = &"nav_obstacles"
+agent_radius = 9.0
+
+[node name="Livingroom" type="Node2D" unique_id=1800568261]
+y_sort_enabled = true
+script = ExtResource("1_world")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=676302176]
+navigation_polygon = SubResource("NavigationPolygon_living")
+
+[node name="Floor" parent="." unique_id=1874134476 instance=ExtResource("2_floor")]
+
+[node name="Props" type="Node2D" parent="." unique_id=263471909]
+y_sort_enabled = true
+
+[node name="Player" parent="." unique_id=367863546 instance=ExtResource("3_player")]
+position = Vector2(32, 144)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1260898283]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Hud" type="CanvasLayer" parent="." unique_id=140086356]
+
+[node name="Hint" type="Label" parent="Hud" unique_id=1435562800]
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 620.0
+offset_bottom = 34.0
+text = "Living · Click izquierdo: caminar"
+
+[node name="Door" parent="." unique_id=1758447601 instance=ExtResource("4_bpb7m")]
+position = Vector2(-74, 228)
+target_scene = "uid://grrdb0vwva3t"
+question = "¿Querés ir a la pieza?"
+
+[node name="PopupCard" parent="." unique_id=1509930117 instance=ExtResource("5_popup")]
+
+[node name="StatsHud" parent="." unique_id=106699917 instance=ExtResource("6_j7tay")]
