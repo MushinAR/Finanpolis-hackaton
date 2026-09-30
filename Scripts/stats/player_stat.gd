@@ -33,13 +33,9 @@ var zone: Zone = Zone.NORMAL
 var _value: float = 0.0
 
 
-## `start_value` sirve para arrancar con un valor que viene de antes (al cambiar de
-## habitación). Si no se pasa, arranca con el initial_value del StatData.
-## Se asigna directo, sin pasar por set_value(), para no emitir señales al construirse.
-func _init(stat_data: StatData, start_value: float = NAN) -> void:
+func _init(stat_data: StatData) -> void:
 	data = stat_data
-	var start := data.initial_value if is_nan(start_value) else start_value
-	_value = data.clamp_value(start)
+	_value = data.clamp_value(data.initial_value)
 	zone = _zone_for(_value)
 
 

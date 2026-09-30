@@ -1,0 +1,94 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://Scenes/floor.tscn" id="2_floor"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://Scenes/bed.tscn" id="4_bed"]
+[ext_resource type="PackedScene" path="res://Scenes/chair.tscn" id="5_chair"]
+[ext_resource type="PackedScene" path="res://Scenes/computer.tscn" id="6_computer"]
+[ext_resource type="PackedScene" path="res://Scenes/obstacle.tscn" id="7_obstacle"]
+[ext_resource type="PackedScene" path="res://Scenes/lamp.tscn" id="8_lamp"]
+[ext_resource type="PackedScene" path="res://Scenes/light_switch.tscn" id="13_switch"]
+[ext_resource type="PackedScene" path="res://Scenes/ceiling_light.tscn" id="14_ceiling"]
+[ext_resource type="Script" path="res://Scripts/lighting/ambient_light.gd" id="15_ambient"]
+[ext_resource type="PackedScene" path="res://Scenes/trash_bin.tscn" id="9_trash"]
+[ext_resource type="PackedScene" path="res://Scenes/book.tscn" id="10_book"]
+[ext_resource type="PackedScene" path="res://Scenes/pizza_box.tscn" id="11_pizza"]
+[ext_resource type="PackedScene" path="res://Scenes/dirty_shirt.tscn" id="12_shirt"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/hud.tscn" id="16_hud"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
+parsed_geometry_type = 1
+source_geometry_mode = 2
+source_geometry_group_name = &"nav_obstacles"
+agent_radius = 9.0
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_world")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_world")
+
+[node name="Floor" parent="." instance=ExtResource("2_floor")]
+
+[node name="Props" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Bed" parent="Props" instance=ExtResource("4_bed")]
+position = Vector2(192, 128)
+
+[node name="NightLamp" parent="Props" instance=ExtResource("8_lamp")]
+position = Vector2(224, 144)
+
+[node name="Computer" parent="Props" instance=ExtResource("6_computer")]
+position = Vector2(0, 64)
+
+[node name="Chair" parent="Props" instance=ExtResource("5_chair")]
+position = Vector2(-96, 144)
+
+[node name="TrashBin" parent="Props" instance=ExtResource("9_trash")]
+position = Vector2(-160, 144)
+
+[node name="Crate" parent="Props" instance=ExtResource("7_obstacle")]
+position = Vector2(0, 192)
+
+[node name="LightSwitch" parent="Props" node_paths=PackedStringArray("target") instance=ExtResource("13_switch")]
+position = Vector2(-64, 96)
+target = NodePath("../../CeilingLight")
+
+[node name="Book" parent="Props" instance=ExtResource("10_book")]
+position = Vector2(96, 112)
+
+[node name="PizzaBox" parent="Props" instance=ExtResource("11_pizza")]
+position = Vector2(-32, 144)
+
+[node name="DirtyShirt" parent="Props" instance=ExtResource("12_shirt")]
+position = Vector2(64, 224)
+
+[node name="CeilingLight" parent="." instance=ExtResource("14_ceiling")]
+position = Vector2(32, 160)
+
+[node name="AmbientLight" type="CanvasModulate" parent="."]
+script = ExtResource("15_ambient")
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(32, 144)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Hint" type="Label" parent="Hud"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+offset_left = 12.0
+offset_top = -34.0
+offset_right = 620.0
+offset_bottom = -8.0
+text = "Click: caminar / usar / agarrar   ·   Click derecho: soltar lo que llevás"
+
+[node name="StatsHud" parent="." instance=ExtResource("16_hud")]
