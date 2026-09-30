@@ -80,13 +80,14 @@ func drop_item_at(target: Vector2) -> void:
 	state_machine.switch_state(&"moving", {"target": target, "action": &"drop"})
 
 
-## Se queda con el item en las manos (lo llaman los estados).
+##El item cuelga del Player, NO del CarrySlot, asi su Y (y por lo tanto su orden de dibujado)
+##es el mismo que el del Player
 func attach_item(item: Item) -> void:
 	if item.get_parent():
 		item.get_parent().remove_child(item)
-	carry_slot.add_child(item)
+	add_child(item)
 	item.position = Vector2.ZERO
-	item.set_carried(true)
+	item.set_carried(true, carry_slot.position)
 	carried_item = item
 	item_picked.emit(item)
 
@@ -95,7 +96,7 @@ func attach_item(item: Item) -> void:
 func release_item() -> Item:
 	var item := carried_item
 	if item:
-		carry_slot.remove_child(item)
+		remove_child(item)
 		item.set_carried(false)
 		carried_item = null
 	return item

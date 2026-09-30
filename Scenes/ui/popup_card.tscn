@@ -1,0 +1,89 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/ui/popup_card.gd" id="1_card"]
+[ext_resource type="Theme" path="res://Assets/art/ui/theme_finanpolis.tres" id="2_theme"]
+
+[sub_resource type="StyleBoxFlat" id="header_style"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.910, 0.722, 0.294, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+
+[node name="PopupCard" type="CanvasLayer" groups=["popup"]]
+layer = 10
+visible = false
+script = ExtResource("1_card")
+
+[node name="Root" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme = ExtResource("2_theme")
+
+[node name="Backdrop" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Center" type="CenterContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="Root/Center"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Body" type="VBoxContainer" parent="Root/Center/Card"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="Root/Center/Card/Body"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("header_style")
+
+[node name="HeaderLabel" type="Label" parent="Root/Center/Card/Body/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "EVENTO"
+horizontal_alignment = 1
+
+[node name="Content" type="MarginContainer" parent="Root/Center/Card/Body"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Inner" type="VBoxContainer" parent="Root/Center/Card/Body/Content"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="MessageLabel" type="Label" parent="Root/Center/Card/Body/Content/Inner"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Mensaje"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Options" type="VBoxContainer" parent="Root/Center/Card/Body/Content/Inner"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
