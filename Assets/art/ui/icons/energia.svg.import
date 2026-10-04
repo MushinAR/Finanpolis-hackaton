@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://05apetwr4nmu"
-path="res://.godot/imported/dinero.png-ab15935cc7b3f24fd6bc2fb85f248429.ctex"
+uid="uid://dmdyw2yf2ard7"
+path="res://.godot/imported/energia.svg-e0ae299a7bcc96147e7b3c33e7947c6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/art/ui/icons/dinero.png"
-dest_files=["res://.godot/imported/dinero.png-ab15935cc7b3f24fd6bc2fb85f248429.ctex"]
+source_file="res://Assets/art/ui/icons/energia.svg"
+dest_files=["res://.godot/imported/energia.svg-e0ae299a7bcc96147e7b3c33e7947c6f.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

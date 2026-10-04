@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2y7n2tsrfog5"
-path="res://.godot/imported/estres.png-4db784b7f6e18cc9bc57ff071d6d74bd.ctex"
+uid="uid://dx573u2mtyjex"
+path="res://.godot/imported/dinero.svg-62b587baf33198f7d2643ad2e7207396.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/art/ui/icons/estres.png"
-dest_files=["res://.godot/imported/estres.png-4db784b7f6e18cc9bc57ff071d6d74bd.ctex"]
+source_file="res://Assets/art/ui/icons/dinero.svg"
+dest_files=["res://.godot/imported/dinero.svg-62b587baf33198f7d2643ad2e7207396.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

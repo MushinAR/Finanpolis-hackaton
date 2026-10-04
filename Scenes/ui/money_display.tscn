@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/ui/money_display.gd" id="1_money"]
+[ext_resource type="FontFile" path="res://Assets/fonts/Poppins-Bold.ttf" id="2_bold"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 14.0
+content_margin_bottom = 2.0
+bg_color = Color(0.298, 0.686, 0.427, 0.12)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.298, 0.686, 0.427, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+anti_aliasing = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_circle"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.298, 0.686, 0.427, 0.2)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+anti_aliasing = true
+
+[node name="MoneyDisplay" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+script = ExtResource("1_money")
+
+[node name="Row" type="HBoxContainer" parent="."]
+theme_override_constants/separation = 8
+
+[node name="Circle" type="PanelContainer" parent="Row"]
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_circle")
+
+[node name="MoneyIcon" type="TextureRect" parent="Row/Circle"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MoneyValue" type="Label" parent="Row"]
+unique_name_in_owner = true
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.118, 0.118, 0.118, 1)
+theme_override_fonts/font = ExtResource("2_bold")
+theme_override_font_sizes/font_size = 20
+text = "$0"
