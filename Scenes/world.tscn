@@ -1,21 +1,23 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cuhk83wvkqsuu"]
 
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_world"]
-[ext_resource type="PackedScene" path="res://Scenes/floor.tscn" id="2_floor"]
-[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="3_player"]
+[ext_resource type="Script" uid="uid://clq51kjl1phog" path="res://Scripts/world.gd" id="1_world"]
+[ext_resource type="PackedScene" uid="uid://cq3fpyw01ht64" path="res://Scenes/floor.tscn" id="2_floor"]
+[ext_resource type="PackedScene" uid="uid://bh8pv7ns81v1b" path="res://Scenes/player.tscn" id="3_player"]
 [ext_resource type="PackedScene" path="res://Scenes/bed.tscn" id="4_bed"]
 [ext_resource type="PackedScene" path="res://Scenes/chair.tscn" id="5_chair"]
 [ext_resource type="PackedScene" path="res://Scenes/computer.tscn" id="6_computer"]
 [ext_resource type="PackedScene" path="res://Scenes/obstacle.tscn" id="7_obstacle"]
 [ext_resource type="PackedScene" path="res://Scenes/lamp.tscn" id="8_lamp"]
-[ext_resource type="PackedScene" path="res://Scenes/light_switch.tscn" id="13_switch"]
-[ext_resource type="PackedScene" path="res://Scenes/ceiling_light.tscn" id="14_ceiling"]
-[ext_resource type="Script" path="res://Scripts/lighting/ambient_light.gd" id="15_ambient"]
 [ext_resource type="PackedScene" path="res://Scenes/trash_bin.tscn" id="9_trash"]
 [ext_resource type="PackedScene" path="res://Scenes/book.tscn" id="10_book"]
 [ext_resource type="PackedScene" path="res://Scenes/pizza_box.tscn" id="11_pizza"]
 [ext_resource type="PackedScene" path="res://Scenes/dirty_shirt.tscn" id="12_shirt"]
+[ext_resource type="PackedScene" path="res://Scenes/light_switch.tscn" id="13_switch"]
+[ext_resource type="PackedScene" path="res://Scenes/ceiling_light.tscn" id="14_ceiling"]
+[ext_resource type="Script" uid="uid://eltigfindmc8" path="res://Scripts/lighting/ambient_light.gd" id="15_ambient"]
 [ext_resource type="PackedScene" path="res://Scenes/ui/hud.tscn" id="16_hud"]
+[ext_resource type="PackedScene" uid="uid://dbdkdyqqagkhh" path="res://Scenes/door.tscn" id="17_door"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/popup_card.tscn" id="18_popup"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
 parsed_geometry_type = 1
@@ -23,72 +25,83 @@ source_geometry_mode = 2
 source_geometry_group_name = &"nav_obstacles"
 agent_radius = 9.0
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=802831352]
 y_sort_enabled = true
 script = ExtResource("1_world")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=181369200]
 navigation_polygon = SubResource("NavigationPolygon_world")
 
-[node name="Floor" parent="." instance=ExtResource("2_floor")]
+[node name="Floor" parent="." unique_id=963566460 instance=ExtResource("2_floor")]
 
-[node name="Props" type="Node2D" parent="."]
+[node name="Props" type="Node2D" parent="." unique_id=478461845]
 y_sort_enabled = true
 
-[node name="Bed" parent="Props" instance=ExtResource("4_bed")]
+[node name="Bed" parent="Props" unique_id=704821974 instance=ExtResource("4_bed")]
 position = Vector2(192, 128)
 
-[node name="NightLamp" parent="Props" instance=ExtResource("8_lamp")]
+[node name="NightLamp" parent="Props" unique_id=290074681 instance=ExtResource("8_lamp")]
 position = Vector2(224, 144)
+starts_on = false
 
-[node name="Computer" parent="Props" instance=ExtResource("6_computer")]
+[node name="Computer" parent="Props" unique_id=1727516229 instance=ExtResource("6_computer")]
 position = Vector2(0, 64)
+boot_time = 1.5
+idle_off_time = 8.0
 
-[node name="Chair" parent="Props" instance=ExtResource("5_chair")]
+[node name="Chair" parent="Props" unique_id=1570846146 instance=ExtResource("5_chair")]
 position = Vector2(-96, 144)
 
-[node name="TrashBin" parent="Props" instance=ExtResource("9_trash")]
+[node name="TrashBin" parent="Props" unique_id=279082193 instance=ExtResource("9_trash")]
 position = Vector2(-160, 144)
 
-[node name="Crate" parent="Props" instance=ExtResource("7_obstacle")]
+[node name="Crate" parent="Props" unique_id=1891766356 instance=ExtResource("7_obstacle")]
 position = Vector2(0, 192)
 
-[node name="LightSwitch" parent="Props" node_paths=PackedStringArray("target") instance=ExtResource("13_switch")]
+[node name="LightSwitch" parent="Props" unique_id=1116869525 node_paths=PackedStringArray("target") instance=ExtResource("13_switch")]
 position = Vector2(-64, 96)
 target = NodePath("../../CeilingLight")
+starts_on = false
 
-[node name="Book" parent="Props" instance=ExtResource("10_book")]
+[node name="Book" parent="Props" unique_id=314227517 instance=ExtResource("10_book")]
 position = Vector2(96, 112)
 
-[node name="PizzaBox" parent="Props" instance=ExtResource("11_pizza")]
+[node name="PizzaBox" parent="Props" unique_id=381283847 instance=ExtResource("11_pizza")]
 position = Vector2(-32, 144)
 
-[node name="DirtyShirt" parent="Props" instance=ExtResource("12_shirt")]
+[node name="DirtyShirt" parent="Props" unique_id=964826715 instance=ExtResource("12_shirt")]
 position = Vector2(64, 224)
 
-[node name="CeilingLight" parent="." instance=ExtResource("14_ceiling")]
+[node name="CeilingLight" parent="." unique_id=467461272 instance=ExtResource("14_ceiling")]
 position = Vector2(32, 160)
 
-[node name="AmbientLight" type="CanvasModulate" parent="."]
+[node name="AmbientLight" type="CanvasModulate" parent="." unique_id=1294132167]
 script = ExtResource("15_ambient")
 
-[node name="Player" parent="." instance=ExtResource("3_player")]
+[node name="Player" parent="." unique_id=1105737369 instance=ExtResource("3_player")]
 position = Vector2(32, 144)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=374174786]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
-[node name="Hud" type="CanvasLayer" parent="."]
+[node name="Hud" type="CanvasLayer" parent="." unique_id=1274753116]
 
-[node name="Hint" type="Label" parent="Hud"]
+[node name="Hint" type="Label" parent="Hud" unique_id=1237235381]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-grow_vertical = 0
 offset_left = 12.0
 offset_top = -34.0
 offset_right = 620.0
 offset_bottom = -8.0
+grow_vertical = 0
 text = "Click: caminar / usar / agarrar   ·   Click derecho: soltar lo que llevás"
 
-[node name="StatsHud" parent="." instance=ExtResource("16_hud")]
+[node name="StatsHud" parent="." unique_id=323594310 instance=ExtResource("16_hud")]
+
+[node name="Door" parent="." unique_id=1192909320 instance=ExtResource("17_door")]
+position = Vector2(150, 86)
+target_scene = "res://Scenes/LivingRoom.tscn"
+
+[node name="PopupCard" parent="." unique_id=521598993 instance=ExtResource("18_popup")]

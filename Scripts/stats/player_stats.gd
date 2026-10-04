@@ -30,6 +30,14 @@ signal stat_maxed(id: StringName)
 ## este valor sale de ahí y se borra de acá.
 @export_range(0.0, 60.0, 0.1) var minutes_per_second: float = 1.0
 
+## Los valores vivos, guardados aparte para que sobrevivan a un cambio de habitación.
+##
+## Es `static`: pertenece al SCRIPT, no al nodo. Cuando la puerta hace
+## change_scene_to_file(), Godot tira la escena entera (Player y PlayerStats incluidos)
+## y arma una nueva, pero el script sigue cargado en memoria, así que este diccionario
+## no se pierde y el PlayerStats nuevo arranca con los valores de antes.
+static var _persisted: Dictionary[StringName, float] = {}
+
 var _stats: Dictionary[StringName, PlayerStat] = {}
 var _built: bool = false
 # Prop que el jugador está usando ahora, para aplicarle los efectos por segundo.
@@ -133,7 +141,10 @@ func _build() -> void:
 	for data in stat_set.stats:
 		if data == null or data.id.is_empty():
 			continue
-		var stat := PlayerStat.new(data)
+		# Si veníamos de otra habitación, arrancamos donde habíamos quedado.
+		var start: float = _persisted.get(data.id, NAN)
+		var stat := PlayerStat.new(data, start)
+		_persisted[data.id] = stat.value
 		_stats[data.id] = stat
 		stat.changed.connect(_on_stat_changed.bind(stat))
 		stat.zone_changed.connect(_on_stat_zone_changed.bind(stat))
@@ -142,6 +153,7 @@ func _build() -> void:
 
 
 func _on_stat_changed(value: float, _previous: float, stat: PlayerStat) -> void:
+	_persisted[stat.data.id] = value
 	stat_changed.emit(stat.data.id, value, stat.ratio())
 
 
@@ -164,3 +176,9 @@ func _on_interaction_finished(prop: Prop, completed: bool) -> void:
 	_active_prop = null
 	if completed:
 		apply(prop.data.effects_on_finish)
+
+
+## Borra los valores guardados: la próxima habitación que cargue arranca con los
+## initial_value del StatSet. Llamalo al empezar una partida nueva.
+static func reset_persisted() -> void:
+	_persisted.clear()

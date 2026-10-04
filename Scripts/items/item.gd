@@ -12,16 +12,21 @@ signal requested(item: Item)
 var is_carried: bool = false
 
 @onready var click_area: CollisionShape2D = $ClickArea
+@onready var sprite: Sprite2D = $Sprite
 
+## Offset del dibujo cuando el item esta en el piso
+const FLOOR_OFFSET := Vector2(0, -16)
 
 func _ready() -> void:
 	input_event.connect(_on_input_event)
 
 
 ## Lo llama el Player al agarrarlo / soltarlo. Cargado, no se puede clickear.
-func set_carried(carried: bool) -> void:
+## `draw_offset` sube el sprite sin mover el nodo.
+func set_carried(carried: bool, draw_offset: Vector2 = Vector2.ZERO) -> void:
 	is_carried = carried
 	click_area.set_deferred("disabled", carried)
+	sprite.offset = FLOOR_OFFSET + draw_offset
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
