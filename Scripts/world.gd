@@ -10,12 +10,19 @@ extends Node2D
 
 
 func _ready() -> void:
+	# Si ya estuvimos acá, los items vuelven a donde quedaron (las luces y la compu
+	# se acuerdan solas, cada una en su _ready). Si traíamos algo en la mano, vuelve a la mano.
+	WorldState.restore_items(self, props)
+	WorldState.place_player(player)
 	_bake_navigation()
 	for child in props.get_children():
 		if child is Prop:
 			child.requested.connect(player.interact_with)
 		elif child is Item:
 			child.requested.connect(player.pick_up)
+	var carried := WorldState.restore_carried_item(player)
+	if carried:
+		carried.requested.connect(player.pick_up)
 	player.item_dropped.connect(_on_item_dropped)
 	camera.global_position = player.global_position
 

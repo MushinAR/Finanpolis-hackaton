@@ -20,6 +20,7 @@ var is_lit: bool = false
 
 
 func _ready() -> void:
+	WorldState.track(self)
 	is_lit = starts_lit
 	light.energy = energy_on if is_lit else 0.0
 	light.enabled = is_lit
@@ -33,6 +34,14 @@ func set_lit(lit: bool) -> void:
 	LightUtils.fade(light, energy_on if lit else 0.0, 0.3)
 	_update_sprite()
 	lit_changed.emit(lit)
+
+
+func save_state() -> Dictionary:
+	return {"lit": is_lit}
+
+
+func load_state(state: Dictionary, _elapsed: float) -> void:
+	starts_lit = state.get("lit", starts_lit)
 
 
 func _update_sprite() -> void:
