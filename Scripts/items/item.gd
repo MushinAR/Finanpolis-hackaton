@@ -10,6 +10,9 @@ signal requested(item: Item)
 
 ## true mientras el Player lo lleva en las manos.
 var is_carried: bool = false
+## Con qué nombre lo recuerda el WorldState. Sale solo de la habitación donde está puesto;
+## si el item se crea por código (lo trajiste de otra habitación), lo pone el que lo crea.
+var persist_id: String = ""
 
 @onready var click_area: CollisionShape2D = $ClickArea
 @onready var sprite: Sprite2D = $Sprite
@@ -19,6 +22,10 @@ const FLOOR_OFFSET := Vector2(0, -16)
 
 func _ready() -> void:
 	input_event.connect(_on_input_event)
+	add_to_group(&"items")
+	if persist_id.is_empty():
+		var room := WorldState.get_room_of(self)
+		persist_id = WorldState.make_item_id(room, self) if room else "spawned::%d" % ResourceUID.create_id()
 
 
 ## Lo llama el Player al agarrarlo / soltarlo. Cargado, no se puede clickear.

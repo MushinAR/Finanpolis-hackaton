@@ -50,6 +50,8 @@ func _on_chosen(index: int) -> void:
 	if target_scene.is_empty():
 		push_warning("Door: falta elegir target_scene en el inspector.")
 		return
+	# Antes de irnos, que el WorldState se acuerde de cómo quedó esta habitación.
+	WorldState.leave_room()
 	get_tree().change_scene_to_file(target_scene)
 
 ## La card es de la sala, no de la puerta: la buscamos por grupo así no importa

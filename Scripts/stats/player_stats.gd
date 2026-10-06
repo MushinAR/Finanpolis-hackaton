@@ -178,6 +178,19 @@ func _on_interaction_finished(prop: Prop, completed: bool) -> void:
 		apply(prop.data.effects_on_finish)
 
 
+## Copia de los valores vivos, para guardar la partida (WorldState.save_game).
+static func get_persisted() -> Dictionary:
+	return _persisted.duplicate()
+
+
+## Pisa los valores vivos con los de una partida guardada. Los toma el PlayerStats
+## de la próxima habitación que cargue.
+static func set_persisted(values: Dictionary) -> void:
+	_persisted.clear()
+	for id in values:
+		_persisted[StringName(id)] = float(values[id])
+
+
 ## Borra los valores guardados: la próxima habitación que cargue arranca con los
 ## initial_value del StatSet. Llamalo al empezar una partida nueva.
 static func reset_persisted() -> void:

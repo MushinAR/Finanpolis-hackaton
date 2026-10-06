@@ -20,6 +20,14 @@ func _ready() -> void:
 	interaction_finished.connect(_on_released)
 
 
+func save_state() -> Dictionary:
+	return {"on": state_machine.current_state.name == &"On"}
+
+
+func load_state(state: Dictionary, _elapsed: float) -> void:
+	starts_on = state.get("on", starts_on)
+
+
 ## Lo llaman los estados off / on. Los hijos pisan esto y llaman a super().
 func apply_state(is_on: bool) -> void:
 	sprite.texture = texture_on if is_on else texture_off

@@ -29,6 +29,8 @@ var user: Player
 
 func _ready() -> void:
 	input_event.connect(_on_input_event)
+	# Si ya estuvimos en esta habitación, acá le llega su estado de la otra vez (load_state).
+	WorldState.track(self)
 	if not blocks_movement:
 		var body := get_node_or_null("Body")
 		if body:
@@ -61,6 +63,18 @@ func end_interaction(player: Player, completed: bool) -> void:
 	is_occupied = false
 	user = null
 	interaction_finished.emit(player, completed)
+
+
+## Lo que hay que recordar de este prop al salir de la habitación. Vacío = nada.
+## Los props con estado propio (lámpara, compu) pisan esta y load_state().
+func save_state() -> Dictionary:
+	return {}
+
+
+## Le devuelve su estado guardado. Se llama desde _ready, antes de que arranque su StateMachine.
+## `elapsed` son los segundos de juego que pasaron desde que el jugador se fue de la habitación.
+func load_state(_state: Dictionary, _elapsed: float) -> void:
+	pass
 
 
 ## Se queda con un item que le dan (el basurero lo tira). Los props especiales pueden pisarla.
