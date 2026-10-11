@@ -39,6 +39,8 @@ var carried_item: Dictionary = {}
 
 # Al cargar una partida, dónde hay que poner al Player cuando aparezca la habitación.
 var _pending_player_position: Variant = null
+# Al cruzar una puerta, de qué habitación venimos (para aparecer al lado de la puerta que lleva de vuelta).
+var _came_from: String = ""
 
 
 func _process(delta: float) -> void:
@@ -180,13 +182,25 @@ func leave_room() -> void:
 	var room := get_tree().current_scene
 	if room:
 		snapshot_room(room)
+		_came_from = room.scene_file_path
 
 
-## Lo llama el World al arrancar: si venimos de cargar una partida, pone al Player donde estaba.
+## Lo llama el World al arrancar: si venimos de cargar una partida, pone al Player donde estaba;
+## si venimos de cruzar una puerta, lo pone al lado de la puerta que lleva de vuelta.
 func place_player(player: Player) -> void:
+	var came_from := _came_from
+	_came_from = ""
 	if _pending_player_position != null:
 		player.global_position = _pending_player_position
 		_pending_player_position = null
+		return
+	if came_from.is_empty():
+		return
+	for node in player.get_parent().get_children():
+		var door := node as Door
+		if door and door.target_scene == came_from:
+			player.global_position = door.to_global(door.spawn_offset)
+			return
 
 #endregion
 
@@ -199,6 +213,7 @@ func new_game() -> void:
 	rooms.clear()
 	carried_item = {}
 	_pending_player_position = null
+	_came_from = ""
 	PlayerStats.reset_persisted()
 
 

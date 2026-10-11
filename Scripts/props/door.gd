@@ -13,6 +13,9 @@ extends Area2D
 ## Textos de los dos botones.
 @export var yes_text: String = "Sí"
 @export var no_text: String = "No"
+## Dónde aparece el Player cuando llega por esta puerta, medido desde la puerta.
+## Tiene que caer en piso caminable y fuera de la zona de la puerta (si no, vuelve a preguntar).
+@export var spawn_offset: Vector2 = Vector2(-30, 40)
 
 var _card: PopupCard
 
