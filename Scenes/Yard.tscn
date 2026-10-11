@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" path="res://Scenes/door.tscn" id="4_bpb7m"]
 [ext_resource type="PackedScene" path="res://Scenes/ui/popup_card.tscn" id="5_popup"]
 [ext_resource type="PackedScene" path="res://Scenes/ui/hud.tscn" id="6_j7tay"]
-[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/bedroom/door.png" id="7_door"]
 [ext_resource type="PackedScene" path="res://Scenes/bench.tscn" id="9_bench"]
 [ext_resource type="PackedScene" path="res://Scenes/planter.tscn" id="10_planter"]
 [ext_resource type="Texture2D" path="res://Assets/art/sprites/props/yard/tree.png" id="11_tree"]
@@ -85,9 +84,6 @@ spawn_offset = Vector2(37, -46)
 [node name="sprite" parent="Door" index="0" groups=["wall_fade"]]
 z_index = 1
 material = SubResource("ShaderMaterial_door")
-texture = ExtResource("7_door")
-centered = false
-offset = Vector2(-27, -103)
 
 [node name="CollisionShape2D" parent="Door" index="1"]
 position = Vector2(9, -11)

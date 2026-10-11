@@ -38,7 +38,7 @@ Cosas que el jugador carga: `book.png`, `pizza_box.png` y `dirty_shirt.png`. 64�
 
 La pieza usa el arte final y no es un tilemap: `room/room_background.png` es el fondo entero (piso + paredes) y `room/room_wall_front.png` va encima de todo. Se arma en `Scenes/floor_bedroom.tscn`, donde también está el borde caminable (`walkable_outline`).
 
-Los muebles (`bed`, `wardrobe`, `desk`, `computer`, `chair`, `door`, `trash_bin`) están recortados al ras, a escala 1:1 con el fondo. El punto de apoyo, la colisión y el área de click de cada uno se ajustan en su escena. `room/manifest.json` tiene la posición original de cada pieza dentro del fondo.
+Los muebles (`bed`, `wardrobe`, `desk`, `computer`, `chair`, `door`, `trash_bin`) están recortados al ras, a escala 1:1 con el fondo. La puerta es la misma en todas las habitaciones: su dibujo y su punto de apoyo están en `Scenes/door.tscn`, armada para una pared del fondo; las puertas de la pared de adelante solo cambian la zona que dispara la pregunta y se suman al grupo `wall_fade`. El punto de apoyo, la colisión y el área de click de cada uno se ajustan en su escena. `room/manifest.json` tiene la posición original de cada pieza dentro del fondo.
 
 ## Living — `rooms/livingroom/`
 

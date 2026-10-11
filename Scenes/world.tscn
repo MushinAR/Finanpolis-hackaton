@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" path="res://Scenes/backpack.tscn" id="19_backpack"]
 [ext_resource type="Texture2D" uid="uid://dowgqb8atx5kw" path="res://Assets/art/sprites/props/bedroom/wardrobe.png" id="20_wardrobe"]
 [ext_resource type="Texture2D" uid="uid://cowostyccsmh5" path="res://Assets/art/sprites/props/bedroom/wardrobe_door.png" id="21_wdoor"]
-[ext_resource type="Texture2D" uid="uid://b4r0ycew0nid7" path="res://Assets/art/sprites/props/bedroom/door.png" id="22_door"]
 [ext_resource type="PackedScene" path="res://Scenes/window.tscn" id="23_window"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
@@ -139,16 +138,7 @@ z_index = -1
 position = Vector2(410, 160)
 target_scene = "res://Scenes/LivingRoom.tscn"
 
-[node name="sprite" parent="Door" index="0" unique_id=489924571]
-texture = ExtResource("22_door")
-centered = false
-offset = Vector2(-27, -103)
-
-[node name="CollisionShape2D" parent="Door" index="1" unique_id=1534034398]
-position = Vector2(-9, 11)
-
 [node name="PopupCard" parent="." unique_id=521598993 instance=ExtResource("18_popup")]
 
 [editable path="Props/Window"]
 [editable path="Props/LightSwitch"]
-[editable path="Door"]
