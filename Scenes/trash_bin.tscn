@@ -2,10 +2,25 @@
 
 [ext_resource type="PackedScene" path="res://Scenes/prop.tscn" id="1_prop"]
 [ext_resource type="Resource" path="res://Data/props/trash_bin.tres" id="2_data"]
-[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/trash_bin.png" id="3_tex"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/bedroom/trash_bin.png" id="3_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_click"]
+size = Vector2(27, 30)
 
 [node name="TrashBin" instance=ExtResource("1_prop")]
 data = ExtResource("2_data")
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("3_tex")
+centered = false
+offset = Vector2(-13, -25)
+
+[node name="ClickArea" parent="." index="1"]
+position = Vector2(0.5, -10)
+shape = SubResource("RectangleShape2D_click")
+
+[node name="Footprint" parent="Body" index="0"]
+polygon = PackedVector2Array(0, -5, 10, 0, 0, 5, -10, 0)
+
+[node name="StandPoint" parent="." index="3"]
+position = Vector2(15, -18)

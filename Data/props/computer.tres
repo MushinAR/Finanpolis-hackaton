@@ -6,7 +6,7 @@
 script = ExtResource("1_data")
 display_name = "Computadora"
 animation = &"use_computer"
-facing = &"nw"
+facing = &"sw"
 duration = 5.0
 accepts_items = false
 

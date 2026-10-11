@@ -6,7 +6,7 @@
 script = ExtResource("1_data")
 display_name = "Silla"
 animation = &"sit"
-facing = &"se"
+facing = &"sw"
 duration = 0.0
 accepts_items = false
 

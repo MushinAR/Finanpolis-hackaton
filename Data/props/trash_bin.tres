@@ -6,7 +6,7 @@
 script = ExtResource("1_data")
 display_name = "Basurero"
 animation = &"idle"
-facing = &"nw"
+facing = &"sw"
 duration = 0.5
 accepts_items = true
 

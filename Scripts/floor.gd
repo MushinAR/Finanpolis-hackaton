@@ -4,12 +4,18 @@ extends Node2D
 ## Se pinta desde el editor. La navegación sale de acá: todo el Ground es caminable
 ## y lo que tenga colisión (Walls) lo bloquea.
 
-@onready var ground: TileMapLayer = $Ground
-@onready var walls: TileMapLayer = $Walls
+## Para pisos que son un dibujo entero y no tiles (ej: la pieza): el borde caminable,
+## en coordenadas locales. Si está vacío, sale del Ground.
+@export var walkable_outline: PackedVector2Array
+
+@onready var ground: TileMapLayer = get_node_or_null("Ground")
+@onready var walls: TileMapLayer = get_node_or_null("Walls")
 
 
 ## Borde del área caminable (en coordenadas globales): el rombo que rodea todo el Ground pintado.
 func get_walkable_outline() -> PackedVector2Array:
+	if not walkable_outline.is_empty():
+		return global_transform * walkable_outline
 	var rect := ground.get_used_rect()
 	var half := Vector2(ground.tile_set.tile_size) / 2.0
 	var last := rect.end - Vector2i.ONE

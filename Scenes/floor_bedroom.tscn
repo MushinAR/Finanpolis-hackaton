@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/floor.gd" id="1_floor"]
+[ext_resource type="Texture2D" path="res://Assets/art/room/room_background.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://Assets/art/room/room_wall_front.png" id="3_front"]
+
+[node name="Floor" type="Node2D"]
+script = ExtResource("1_floor")
+walkable_outline = PackedVector2Array(284, 97, 460, 184, 217, 308, 40, 218)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("2_bg")
+centered = false
+
+[node name="WallFront" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("3_front")
+centered = false

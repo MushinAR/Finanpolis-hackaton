@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cuhk83wvkqsuu"]
 
 [ext_resource type="Script" uid="uid://clq51kjl1phog" path="res://Scripts/world.gd" id="1_world"]
-[ext_resource type="PackedScene" uid="uid://cq3fpyw01ht64" path="res://Scenes/floor.tscn" id="2_floor"]
+[ext_resource type="PackedScene" path="res://Scenes/floor_bedroom.tscn" id="2_floor"]
 [ext_resource type="PackedScene" uid="uid://bh8pv7ns81v1b" path="res://Scenes/player.tscn" id="3_player"]
 [ext_resource type="PackedScene" path="res://Scenes/bed.tscn" id="4_bed"]
 [ext_resource type="PackedScene" path="res://Scenes/chair.tscn" id="5_chair"]
@@ -18,6 +18,10 @@
 [ext_resource type="PackedScene" path="res://Scenes/ui/hud.tscn" id="16_hud"]
 [ext_resource type="PackedScene" uid="uid://dbdkdyqqagkhh" path="res://Scenes/door.tscn" id="17_door"]
 [ext_resource type="PackedScene" path="res://Scenes/ui/popup_card.tscn" id="18_popup"]
+[ext_resource type="PackedScene" path="res://Scenes/backpack.tscn" id="19_backpack"]
+[ext_resource type="Texture2D" uid="uid://dowgqb8atx5kw" path="res://Assets/art/sprites/props/bedroom/wardrobe.png" id="20_wardrobe"]
+[ext_resource type="Texture2D" uid="uid://cowostyccsmh5" path="res://Assets/art/sprites/props/bedroom/wardrobe_door.png" id="21_wdoor"]
+[ext_resource type="Texture2D" uid="uid://b4r0ycew0nid7" path="res://Assets/art/sprites/props/bedroom/door.png" id="22_door"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
 parsed_geometry_type = 1
@@ -37,49 +41,72 @@ navigation_polygon = SubResource("NavigationPolygon_world")
 [node name="Props" type="Node2D" parent="." unique_id=478461845]
 y_sort_enabled = true
 
+[node name="Wardrobe" type="StaticBody2D" parent="Props" unique_id=1287442118 groups=["nav_obstacles"]]
+z_index = -1
+position = Vector2(150, 169)
+
+[node name="Sprite" type="Sprite2D" parent="Props/Wardrobe" unique_id=385329867]
+texture = ExtResource("20_wardrobe")
+centered = false
+offset = Vector2(-64, -107)
+
+[node name="DoorSprite" type="Sprite2D" parent="Props/Wardrobe" unique_id=496204353]
+texture = ExtResource("21_wdoor")
+centered = false
+offset = Vector2(-28, -44)
+
+[node name="Footprint" type="CollisionPolygon2D" parent="Props/Wardrobe" unique_id=222848033]
+polygon = PackedVector2Array(25, -16, 58, 0, 20, 47, -31, 44, -64, 28)
+
 [node name="Bed" parent="Props" unique_id=704821974 instance=ExtResource("4_bed")]
-position = Vector2(192, 128)
+position = Vector2(248, 181)
 
 [node name="NightLamp" parent="Props" unique_id=290074681 instance=ExtResource("8_lamp")]
-position = Vector2(224, 144)
+position = Vector2(362, 152)
 starts_on = false
 
 [node name="Computer" parent="Props" unique_id=1727516229 instance=ExtResource("6_computer")]
-position = Vector2(0, 64)
+position = Vector2(216, 317)
 boot_time = 1.5
 idle_off_time = 8.0
 
 [node name="Chair" parent="Props" unique_id=1570846146 instance=ExtResource("5_chair")]
-position = Vector2(-96, 144)
+position = Vector2(240, 258)
 
 [node name="TrashBin" parent="Props" unique_id=279082193 instance=ExtResource("9_trash")]
-position = Vector2(-160, 144)
+position = Vector2(135, 264)
 
 [node name="Crate" parent="Props" unique_id=1891766356 instance=ExtResource("7_obstacle")]
-position = Vector2(0, 192)
+position = Vector2(310, 235)
 
 [node name="LightSwitch" parent="Props" unique_id=1116869525 node_paths=PackedStringArray("target") instance=ExtResource("13_switch")]
-position = Vector2(-64, 96)
+position = Vector2(72, 214)
 target = NodePath("../../CeilingLight")
 starts_on = false
 
+[node name="StandPoint" parent="Props/LightSwitch" index="3"]
+position = Vector2(14, 12)
+
 [node name="Book" parent="Props" unique_id=314227517 instance=ExtResource("10_book")]
-position = Vector2(96, 112)
+position = Vector2(300, 195)
 
 [node name="PizzaBox" parent="Props" unique_id=381283847 instance=ExtResource("11_pizza")]
-position = Vector2(-32, 144)
+position = Vector2(350, 200)
+
+[node name="Backpack" parent="Props" unique_id=1087947248 instance=ExtResource("19_backpack")]
+position = Vector2(205, 182)
 
 [node name="DirtyShirt" parent="Props" unique_id=964826715 instance=ExtResource("12_shirt")]
-position = Vector2(64, 224)
+position = Vector2(185, 240)
 
 [node name="CeilingLight" parent="." unique_id=467461272 instance=ExtResource("14_ceiling")]
-position = Vector2(32, 160)
+position = Vector2(250, 215)
 
 [node name="AmbientLight" type="CanvasModulate" parent="." unique_id=1294132167]
 script = ExtResource("15_ambient")
 
 [node name="Player" parent="." unique_id=1105737369 instance=ExtResource("3_player")]
-position = Vector2(32, 144)
+position = Vector2(250, 225)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=374174786]
 zoom = Vector2(2, 2)
@@ -101,7 +128,19 @@ text = "Click: caminar / usar / agarrar   ·   Click derecho: soltar lo que llev
 [node name="StatsHud" parent="." unique_id=323594310 instance=ExtResource("16_hud")]
 
 [node name="Door" parent="." unique_id=1192909320 instance=ExtResource("17_door")]
-position = Vector2(150, 86)
+z_index = -1
+position = Vector2(410, 160)
 target_scene = "res://Scenes/LivingRoom.tscn"
 
+[node name="sprite" parent="Door" index="0" unique_id=489924571]
+texture = ExtResource("22_door")
+centered = false
+offset = Vector2(-27, -103)
+
+[node name="CollisionShape2D" parent="Door" index="1" unique_id=1534034398]
+position = Vector2(-9, 11)
+
 [node name="PopupCard" parent="." unique_id=521598993 instance=ExtResource("18_popup")]
+
+[editable path="Props/LightSwitch"]
+[editable path="Door"]
