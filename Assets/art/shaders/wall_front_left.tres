@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://Assets/art/shaders/wall_fade_sprite.gdshader" id="1_shader"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/target = Vector2(-100000, -100000)
+shader_parameter/min_alpha = 0.22
+shader_parameter/half_width = 36.0
+shader_parameter/height = 4.0
+shader_parameter/slope = 0.5

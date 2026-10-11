@@ -64,7 +64,80 @@
         0,
         0
       ],
-      "source": "pared trasera"
+      "source": "pared trasera",
+      "note": "reference only; the game repeats wall_front_left.png / wall_front_right.png (72 px pieces cut from this image) so each piece can fade",
+      "pieces": [
+        {
+          "side": "left",
+          "file": "room/wall_front_left.png",
+          "pos": [
+            144,
+            270
+          ],
+          "width": 72,
+          "texture_x": 0
+        },
+        {
+          "side": "left",
+          "file": "room/wall_front_left.png",
+          "pos": [
+            72,
+            234
+          ],
+          "width": 72,
+          "texture_x": 0
+        },
+        {
+          "side": "left",
+          "file": "room/wall_front_left.png",
+          "pos": [
+            4,
+            198
+          ],
+          "width": 68,
+          "texture_x": 4
+        },
+        {
+          "side": "right",
+          "file": "room/wall_front_right.png",
+          "pos": [
+            216,
+            270
+          ],
+          "width": 72,
+          "texture_x": 0
+        },
+        {
+          "side": "right",
+          "file": "room/wall_front_right.png",
+          "pos": [
+            288,
+            234
+          ],
+          "width": 72,
+          "texture_x": 0
+        },
+        {
+          "side": "right",
+          "file": "room/wall_front_right.png",
+          "pos": [
+            360,
+            198
+          ],
+          "width": 72,
+          "texture_x": 0
+        },
+        {
+          "side": "right",
+          "file": "room/wall_front_right.png",
+          "pos": [
+            432,
+            162
+          ],
+          "width": 65,
+          "texture_x": 0
+        }
+      ]
     },
     "room_background": {
       "file": "room/room_background.png",
