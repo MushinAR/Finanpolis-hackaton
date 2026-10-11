@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" path="res://Scenes/ui/popup_card.tscn" id="5_popup"]
 [ext_resource type="PackedScene" path="res://Scenes/ui/hud.tscn" id="6_j7tay"]
 [ext_resource type="Texture2D" path="res://Assets/art/sprites/props/bedroom/door.png" id="7_door"]
+[ext_resource type="PackedScene" path="res://Scenes/fridge.tscn" id="9_fridge"]
+[ext_resource type="PackedScene" path="res://Scenes/oven.tscn" id="10_oven"]
+[ext_resource type="PackedScene" path="res://Scenes/tv.tscn" id="11_tv"]
+[ext_resource type="PackedScene" path="res://Scenes/window.tscn" id="12_window"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/table.png" id="13_table"]
 [ext_resource type="Shader" path="res://Assets/art/shaders/wall_fade_sprite.gdshader" id="8_fade"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_living"]
@@ -36,6 +41,29 @@ navigation_polygon = SubResource("NavigationPolygon_living")
 [node name="Props" type="Node2D" parent="." unique_id=263471909]
 y_sort_enabled = true
 
+[node name="Fridge" parent="Props" instance=ExtResource("9_fridge")]
+position = Vector2(285, 102)
+
+[node name="Oven" parent="Props" instance=ExtResource("10_oven")]
+position = Vector2(235, 127)
+
+[node name="Tv" parent="Props" instance=ExtResource("11_tv")]
+position = Vector2(413, 158)
+
+[node name="Window" parent="Props" instance=ExtResource("12_window")]
+position = Vector2(123, 183)
+
+[node name="Table" type="StaticBody2D" parent="Props" groups=["nav_obstacles"]]
+position = Vector2(327, 239)
+
+[node name="Sprite" type="Sprite2D" parent="Props/Table"]
+texture = ExtResource("13_table")
+centered = false
+offset = Vector2(-62, -69)
+
+[node name="Footprint" type="CollisionPolygon2D" parent="Props/Table"]
+polygon = PackedVector2Array(-14, -31, 62, 7, 14, 31, -62, -7)
+
 [node name="Player" parent="." unique_id=367863546 instance=ExtResource("3_player")]
 position = Vector2(150, 250)
 
@@ -54,7 +82,7 @@ offset_top = -34.0
 offset_right = 620.0
 offset_bottom = -8.0
 grow_vertical = 0
-text = "Living · Click izquierdo: caminar"
+text = "Living · Click: caminar / usar"
 
 [node name="Door" parent="." unique_id=1758447601 instance=ExtResource("4_bpb7m")]
 position = Vector2(113, 296)
@@ -72,8 +100,23 @@ offset = Vector2(-27, -103)
 [node name="CollisionShape2D" parent="Door" index="1"]
 position = Vector2(9, -11)
 
+[node name="YardDoor" parent="." instance=ExtResource("4_bpb7m")]
+z_index = -1
+position = Vector2(531, 217)
+target_scene = "res://Scenes/Yard.tscn"
+question = "¿Querés salir al patio?"
+
+[node name="sprite" parent="YardDoor" index="0"]
+texture = ExtResource("7_door")
+centered = false
+offset = Vector2(-27, -103)
+
+[node name="CollisionShape2D" parent="YardDoor" index="1"]
+position = Vector2(-9, 11)
+
 [node name="PopupCard" parent="." unique_id=1509930117 instance=ExtResource("5_popup")]
 
 [node name="StatsHud" parent="." unique_id=106699917 instance=ExtResource("6_j7tay")]
 
 [editable path="Door"]
+[editable path="YardDoor"]

@@ -46,6 +46,13 @@ Armado con las dos piezas de `Arte/casa demo/tamaños.png` (tile de 144×72): `f
 
 La pared de adelante es la misma de la pieza (ver abajo).
 
+## Cocina, ventanas y patio (provisorio, dibujado con código)
+
+- `sprites/props/kitchen/`: `fridge` / `fridge_open`, `oven` / `oven_on`, `tv` / `tv_on` y `table`. Los que tienen dos imágenes muestran la segunda mientras el jugador los usa (`Scripts/props/active_prop.gd`); las dos tienen que medir lo mismo.
+- `sprites/props/shared/`: `window_left` (para una pared del fondo izquierdo) y `window_right` (la misma espejada, todavía sin usar).
+- `rooms/yard/room_background.png`: el patio (pasto + cerco), con el mismo tamaño de piso que el living. Se arma en `Scenes/floor_yard.tscn`. Sus muebles están en `sprites/props/yard/` (`bench`, `planter`, `tree`).
+- `rooms/yard/manifest.json` tiene el `offset` de cada sprite respecto de su punto de apoyo. Si el arte final mide distinto, hay que ajustar ese offset en la escena del prop.
+
 ## Pared de adelante (pieza y living)
 
 Hay **un solo tramo por lado**, de 72 px, que se repite: `room/wall_front_left.png` y `room/wall_front_right.png` (recortados de `room/room_wall_front.png`, que queda como referencia). Las dos habitaciones usan esos dos archivos: cada tramo es un Sprite en los nodos `WallFront/Left` y `WallFront/Right` de `floor_bedroom.tscn` y `floor_livingroom.tscn`; el último de cada lado se recorta con `region_rect` si no entra entero. Al ser Sprites sueltos, cada tramo se pone translúcido por separado cuando tapa al jugador (`Scripts/wall_fade_sprites.gd` + `shaders/wall_fade_sprite.gdshader`, la misma lógica que el tilemap provisorio). El material de cada lado es uno solo para las dos habitaciones (`shaders/wall_front_left.tres` y `wall_front_right.tres`); cualquier otro nodo que tenga que desvanecerse igual (ej: la puerta del living) se suma al grupo `wall_fade`.

@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dowgqb8atx5kw" path="res://Assets/art/sprites/props/bedroom/wardrobe.png" id="20_wardrobe"]
 [ext_resource type="Texture2D" uid="uid://cowostyccsmh5" path="res://Assets/art/sprites/props/bedroom/wardrobe_door.png" id="21_wdoor"]
 [ext_resource type="Texture2D" uid="uid://b4r0ycew0nid7" path="res://Assets/art/sprites/props/bedroom/door.png" id="22_door"]
+[ext_resource type="PackedScene" path="res://Scenes/window.tscn" id="23_window"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_world"]
 parsed_geometry_type = 1
@@ -57,6 +58,12 @@ offset = Vector2(-28, -44)
 
 [node name="Footprint" type="CollisionPolygon2D" parent="Props/Wardrobe" unique_id=222848033]
 polygon = PackedVector2Array(25, -16, 58, 0, 20, 47, -31, 44, -64, 28)
+
+[node name="Window" parent="Props" instance=ExtResource("23_window")]
+position = Vector2(44, 208)
+
+[node name="StandPoint" parent="Props/Window" index="3"]
+position = Vector2(42, 18)
 
 [node name="Bed" parent="Props" unique_id=704821974 instance=ExtResource("4_bed")]
 position = Vector2(248, 181)
@@ -142,5 +149,6 @@ position = Vector2(-9, 11)
 
 [node name="PopupCard" parent="." unique_id=521598993 instance=ExtResource("18_popup")]
 
+[editable path="Props/Window"]
 [editable path="Props/LightSwitch"]
 [editable path="Door"]
