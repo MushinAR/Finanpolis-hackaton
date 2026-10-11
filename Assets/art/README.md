@@ -42,6 +42,18 @@ Los muebles (`bed`, `wardrobe`, `desk`, `computer`, `chair`, `door`, `trash_bin`
 
 El Player actual sale de `sprites/characters/player/` con cuadros de **64×90** (pies abajo al centro). Solo hay `idle`; `walk` es un rebote provisorio hecho a partir de `idle`, y las animaciones que faltan (`sit`, `sleep`, `use_computer`) caen en `idle`.
 
+## Living — `rooms/livingroom/`
+
+Armado con las dos piezas de `Arte/casa demo/tamaños.png` (tile de 144×72): `floor_tile.png` (baldosa) y `wall_panel.png` (paño de pared; la pared izquierda es el mismo espejado). `room_background.png` es el piso de 4×4 baldosas más las dos paredes del fondo. Se arma en `Scenes/floor_livingroom.tscn`.
+
+La pared de adelante es la misma de la pieza (ver abajo).
+
+## Pared de adelante (pieza y living)
+
+Hay **un solo tramo por lado**, de 72 px, que se repite: `room/wall_front_left.png` y `room/wall_front_right.png` (recortados de `room/room_wall_front.png`, que queda como referencia). Las dos habitaciones usan esos dos archivos: cada tramo es un Sprite en los nodos `WallFront/Left` y `WallFront/Right` de `floor_bedroom.tscn` y `floor_livingroom.tscn`; el último de cada lado se recorta con `region_rect` si no entra entero. Al ser Sprites sueltos, cada tramo se pone translúcido por separado cuando tapa al jugador (`Scripts/wall_fade_sprites.gd` + `shaders/wall_fade_sprite.gdshader`, la misma lógica que el tilemap provisorio). El material de cada lado es uno solo para las dos habitaciones (`shaders/wall_front_left.tres` y `wall_front_right.tres`); cualquier otro nodo que tenga que desvanecerse igual (ej: la puerta del living) se suma al grupo `wall_fade`.
+
+El alto que cuenta para la transparencia es el parámetro `height` del material (cuánto sube la pared por encima del borde del piso). Si el arte de la pared se hace más alto, hay que subir ese número.
+
 ## Player — `sprites/player/player_<animación>_<dirección>.png`
 
 Cada archivo es una **tira horizontal** de cuadros de 64×64. La cantidad de cuadros sale sola del ancho de la imagen (1 cuadro = 64 px de ancho, 4 cuadros = 256 px).
