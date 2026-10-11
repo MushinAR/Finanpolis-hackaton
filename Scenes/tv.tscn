@@ -4,16 +4,119 @@
 [ext_resource type="Resource" path="res://Data/props/tv.tres" id="2_data"]
 [ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv.png" id="3_tex"]
 [ext_resource type="Script" path="res://Scripts/props/active_prop.gd" id="4_script"]
-[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_on.png" id="5_active"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_01.png" id="f_01"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_02.png" id="f_02"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_03.png" id="f_03"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_04.png" id="f_04"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_05.png" id="f_05"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_06.png" id="f_06"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_07.png" id="f_07"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_08.png" id="f_08"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_09.png" id="f_09"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_10.png" id="f_10"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_11.png" id="f_11"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_12.png" id="f_12"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_13.png" id="f_13"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_14.png" id="f_14"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_15.png" id="f_15"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_16.png" id="f_16"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_17.png" id="f_17"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_18.png" id="f_18"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_19.png" id="f_19"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_20.png" id="f_20"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_21.png" id="f_21"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_22.png" id="f_22"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_23.png" id="f_23"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/kitchen/tv_show/tv_show_24.png" id="f_24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_click"]
 size = Vector2(88, 100)
 
-[node name="Tv" instance=ExtResource("1_prop")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_show"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("f_01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_09")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f_24")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Tv" node_paths=PackedStringArray("active_animation") instance=ExtResource("1_prop")]
 z_index = -1
 script = ExtResource("4_script")
 texture_idle = ExtResource("3_tex")
-texture_active = ExtResource("5_active")
+active_animation = NodePath("Screen")
 data = ExtResource("2_data")
 
 [node name="Sprite" parent="." index="0"]
@@ -30,3 +133,9 @@ polygon = PackedVector2Array(0, 0, 66, 33, 44, 44, -22, 11)
 
 [node name="StandPoint" parent="." index="3"]
 position = Vector2(-19, 42)
+
+[node name="Screen" type="AnimatedSprite2D" parent="." index="5"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_show")
+centered = false
+offset = Vector2(-22, -56)

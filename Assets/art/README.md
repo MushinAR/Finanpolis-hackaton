@@ -48,7 +48,7 @@ La pared de adelante es la misma de la pieza (ver abajo).
 
 ## Cocina, ventanas y patio (provisorio, dibujado con código)
 
-- `sprites/props/kitchen/`: `fridge` / `fridge_open`, `oven` / `oven_on`, `tv` / `tv_on` y `table`. Los que tienen dos imágenes muestran la segunda mientras el jugador los usa (`Scripts/props/active_prop.gd`); las dos tienen que medir lo mismo.
+- `sprites/props/kitchen/`: `fridge` / `fridge_open`, `oven` / `oven_on`, `tv` y `table`. Los que tienen dos imágenes muestran la segunda mientras el jugador los usa (`Scripts/props/active_prop.gd`); las dos tienen que medir lo mismo. La tele en cambio pasa una película mientras la miran: `tv_show/tv_show_01..24.png` son 24 cuadros del tamaño de `tv.png` con solo la pantalla dibujada (el resto transparente), que se dibujan encima a 6 cuadros por segundo (nodo `Screen` de `Scenes/tv.tscn`). Godot no importa GIF, por eso van como PNG sueltos.
 - `sprites/props/shared/`: `window_left` (para una pared del fondo izquierdo) y `window_right` (la misma espejada, todavía sin usar).
 - `rooms/yard/room_background.png`: el patio (pasto + cerco), con el mismo tamaño de piso que el living. Se arma en `Scenes/floor_yard.tscn`. Sus muebles están en `sprites/props/yard/` (`bench`, `planter`, `tree`).
 - `rooms/yard/manifest.json` tiene el `offset` de cada sprite respecto de su punto de apoyo. Si el arte final mide distinto, hay que ajustar ese offset en la escena del prop.
