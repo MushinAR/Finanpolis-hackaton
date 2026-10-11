@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/floor.gd" id="1_floor"]
+[ext_resource type="Texture2D" path="res://Assets/art/rooms/yard/room_background.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://Assets/art/room/wall_front_left.png" id="3_l"]
+[ext_resource type="Texture2D" path="res://Assets/art/room/wall_front_right.png" id="4_r"]
+[ext_resource type="Script" path="res://Scripts/wall_fade_sprites.gd" id="5_fade"]
+[ext_resource type="Material" path="res://Assets/art/shaders/wall_front_left.tres" id="6_mat_l"]
+[ext_resource type="Material" path="res://Assets/art/shaders/wall_front_right.tres" id="7_mat_r"]
+
+[node name="Floor" type="Node2D"]
+script = ExtResource("1_floor")
+walkable_outline = PackedVector2Array(293, 98, 581, 242, 293, 386, 5, 242)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("2_bg")
+centered = false
+
+[node name="WallFront" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource("5_fade")
+
+[node name="Left" type="Node2D" parent="WallFront" groups=["wall_fade"]]
+material = ExtResource("6_mat_l")
+
+[node name="Right" type="Node2D" parent="WallFront" groups=["wall_fade"]]
+material = ExtResource("7_mat_r")
+
+[node name="Segment1" type="Sprite2D" parent="WallFront/Left"]
+use_parent_material = true
+position = Vector2(41, 259)
+texture = ExtResource("3_l")
+centered = false
+offset = Vector2(-36, -18)
+
+[node name="Segment2" type="Sprite2D" parent="WallFront/Left"]
+use_parent_material = true
+position = Vector2(113, 295)
+texture = ExtResource("3_l")
+centered = false
+offset = Vector2(-36, -18)
+
+[node name="Segment3" type="Sprite2D" parent="WallFront/Left"]
+use_parent_material = true
+position = Vector2(185, 331)
+texture = ExtResource("3_l")
+centered = false
+offset = Vector2(-36, -18)
+
+[node name="Segment4" type="Sprite2D" parent="WallFront/Left"]
+use_parent_material = true
+position = Vector2(257, 367)
+texture = ExtResource("3_l")
+centered = false
+offset = Vector2(-36, -18)
+
+[node name="Segment1" type="Sprite2D" parent="WallFront/Right"]
+use_parent_material = true
+position = Vector2(329, 367)
+texture = ExtResource("4_r")
+centered = false
+offset = Vector2(-36, -18)
+
+[node name="Segment2" type="Sprite2D" parent="WallFront/Right"]
+use_parent_material = true
+position = Vector2(401, 331)
+texture = ExtResource("4_r")
+centered = false
+offset = Vector2(-36, -18)
+
+[node name="Segment3" type="Sprite2D" parent="WallFront/Right"]
+use_parent_material = true
+position = Vector2(473, 295)
+texture = ExtResource("4_r")
+centered = false
+offset = Vector2(-36, -18)
+
+[node name="Segment4" type="Sprite2D" parent="WallFront/Right"]
+use_parent_material = true
+position = Vector2(545, 259)
+texture = ExtResource("4_r")
+centered = false
+offset = Vector2(-36, -18)

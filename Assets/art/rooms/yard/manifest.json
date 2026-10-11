@@ -1,0 +1,210 @@
+{
+  "canvas": [
+    586,
+    386
+  ],
+  "floor_corners": [
+    [
+      293,
+      98
+    ],
+    [
+      581,
+      242
+    ],
+    [
+      293,
+      386
+    ],
+    [
+      5,
+      242
+    ]
+  ],
+  "fence_height": 66,
+  "note": "Drawn with code (placeholder). Same floor size as the living room. Each prop lists its Sprite.offset measured from its node origin.",
+  "props": {
+    "fridge": {
+      "files": [
+        "fridge",
+        "fridge_open"
+      ],
+      "size": [
+        132,
+        136
+      ],
+      "offset": [
+        -46,
+        -92
+      ],
+      "footprint": [
+        0,
+        0.0,
+        42,
+        21.0,
+        -4,
+        44.0,
+        -46,
+        23.0
+      ]
+    },
+    "oven": {
+      "files": [
+        "oven",
+        "oven_on"
+      ],
+      "size": [
+        88,
+        88
+      ],
+      "offset": [
+        -46,
+        -44
+      ],
+      "footprint": [
+        0,
+        0.0,
+        42,
+        21.0,
+        -4,
+        44.0,
+        -46,
+        23.0
+      ]
+    },
+    "table": {
+      "files": [
+        "table"
+      ],
+      "size": [
+        124,
+        98
+      ],
+      "offset": [
+        -62,
+        -69
+      ],
+      "footprint": [
+        -14,
+        -31.0,
+        62,
+        7.0,
+        14,
+        31.0,
+        -62,
+        -7.0
+      ]
+    },
+    "tv": {
+      "files": [
+        "tv",
+        "tv_on"
+      ],
+      "size": [
+        88,
+        100
+      ],
+      "offset": [
+        -22,
+        -56
+      ],
+      "footprint": [
+        0,
+        0.0,
+        66,
+        33.0,
+        44,
+        44.0,
+        -22,
+        11.0
+      ]
+    },
+    "window": {
+      "files": [
+        "window_left",
+        "window_right"
+      ],
+      "size": [
+        52,
+        75
+      ],
+      "offset": [
+        -24,
+        -92
+      ],
+      "offset_right": [
+        -28,
+        -92
+      ]
+    },
+    "bench": {
+      "files": [
+        "bench"
+      ],
+      "size": [
+        96,
+        92
+      ],
+      "offset": [
+        -24,
+        -45
+      ],
+      "footprint": [
+        0,
+        0.0,
+        72,
+        36.0,
+        48,
+        48.0,
+        -24,
+        12.0
+      ]
+    },
+    "planter": {
+      "files": [
+        "planter"
+      ],
+      "size": [
+        84,
+        62
+      ],
+      "offset": [
+        -64,
+        -20
+      ],
+      "footprint": [
+        0,
+        0.0,
+        20,
+        10.0,
+        -44,
+        42.0,
+        -64,
+        32.0
+      ]
+    },
+    "tree": {
+      "files": [
+        "tree"
+      ],
+      "size": [
+        113,
+        144
+      ],
+      "offset": [
+        -56,
+        -138
+      ],
+      "footprint": [
+        0,
+        -8.0,
+        16,
+        0.0,
+        0,
+        8.0,
+        -16,
+        0.0
+      ]
+    }
+  }
+}

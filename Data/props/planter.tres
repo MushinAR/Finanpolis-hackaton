@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PropData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/prop_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+display_name = "Cantero"
+animation = &"idle"
+facing = &"nw"
+duration = 3.0
+accepts_items = false
+
+effects_on_finish = {
+"estres": -8.0,
+"felicidad": 3.0
+}

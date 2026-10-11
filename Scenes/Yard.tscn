@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://Scenes/floor_yard.tscn" id="2_floor"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://Scenes/door.tscn" id="4_bpb7m"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/popup_card.tscn" id="5_popup"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/hud.tscn" id="6_j7tay"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/bedroom/door.png" id="7_door"]
+[ext_resource type="PackedScene" path="res://Scenes/bench.tscn" id="9_bench"]
+[ext_resource type="PackedScene" path="res://Scenes/planter.tscn" id="10_planter"]
+[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/yard/tree.png" id="11_tree"]
+[ext_resource type="Shader" path="res://Assets/art/shaders/wall_fade_sprite.gdshader" id="8_fade"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yard"]
+parsed_geometry_type = 1
+source_geometry_mode = 2
+source_geometry_group_name = &"nav_obstacles"
+agent_radius = 9.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_door"]
+shader = ExtResource("8_fade")
+shader_parameter/target = Vector2(-100000, -100000)
+shader_parameter/min_alpha = 0.3
+shader_parameter/max_alpha = 0.7
+shader_parameter/half_width = 27.0
+shader_parameter/height = 90.0
+shader_parameter/slope = 0.5
+
+[node name="Yard" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_world")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_yard")
+
+[node name="Floor" parent="." instance=ExtResource("2_floor")]
+
+[node name="Props" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" type="StaticBody2D" parent="Props" groups=["nav_obstacles"]]
+position = Vector2(293, 142)
+
+[node name="Sprite" type="Sprite2D" parent="Props/Tree"]
+texture = ExtResource("11_tree")
+centered = false
+offset = Vector2(-56, -138)
+
+[node name="Footprint" type="CollisionPolygon2D" parent="Props/Tree"]
+polygon = PackedVector2Array(0, -8, 16, 0, 0, 8, -16, 0)
+
+[node name="Bench" parent="Props" instance=ExtResource("9_bench")]
+position = Vector2(443, 173)
+
+[node name="Planter" parent="Props" instance=ExtResource("10_planter")]
+position = Vector2(173, 158)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(150, 250)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Hint" type="Label" parent="Hud"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -34.0
+offset_right = 620.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "Patio · Click: caminar / usar"
+
+[node name="Door" parent="." instance=ExtResource("4_bpb7m")]
+position = Vector2(113, 296)
+target_scene = "res://Scenes/LivingRoom.tscn"
+question = "¿Querés volver al living?"
+spawn_offset = Vector2(37, -46)
+
+[node name="sprite" parent="Door" index="0" groups=["wall_fade"]]
+z_index = 1
+material = SubResource("ShaderMaterial_door")
+texture = ExtResource("7_door")
+centered = false
+offset = Vector2(-27, -103)
+
+[node name="CollisionShape2D" parent="Door" index="1"]
+position = Vector2(9, -11)
+
+[node name="PopupCard" parent="." instance=ExtResource("5_popup")]
+
+[node name="StatsHud" parent="." instance=ExtResource("6_j7tay")]
+
+[editable path="Door"]
