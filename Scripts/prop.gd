@@ -22,7 +22,8 @@ signal item_received(item: Item)
 var is_occupied: bool = false
 var user: Player
 
-# Markers opcionales. Si faltan, se para abajo del prop y se usa desde el centro.
+# Markers opcionales. Sin StandPoint se para abajo del prop; con el UsePoint sin mover
+# (o sin UsePoint) lo usa desde ahí mismo, sin subirse al prop.
 @onready var stand_point: Marker2D = get_node_or_null("StandPoint")
 @onready var use_point: Marker2D = get_node_or_null("UsePoint")
 
@@ -45,8 +46,11 @@ func get_stand_position() -> Vector2:
 
 
 ## Dónde queda el Player mientras lo usa (arriba de la cama, en la silla...).
+## Los props que se usan de parado (lámpara, basurero, heladera) no mueven su UsePoint.
 func get_use_position() -> Vector2:
-	return use_point.global_position if use_point else global_position
+	if use_point == null or use_point.position == Vector2.ZERO:
+		return get_stand_position()
+	return use_point.global_position
 
 
 ## La llama el estado "interacting". Devuelve false si ya lo está usando otro.
