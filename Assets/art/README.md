@@ -34,6 +34,14 @@ Degradé radial que usan todas las luces. Si el arte necesita otro estilo de luz
 
 Cosas que el jugador carga: `book.png`, `pizza_box.png` y `dirty_shirt.png`. 64×64, con la base en el píxel (32, 48). Cuando el Player los lleva, aparecen sobre su cabeza (esa posición se ajusta en el nodo `CarrySlot` de `player.tscn`).
 
+## Pieza del jugador — `room/` y `sprites/props/bedroom/`
+
+La pieza usa el arte final y no es un tilemap: `room/room_background.png` es el fondo entero (piso + paredes) y `room/room_wall_front.png` va encima de todo. Se arma en `Scenes/floor_bedroom.tscn`, donde también está el borde caminable (`walkable_outline`).
+
+Los muebles (`bed`, `wardrobe`, `desk`, `computer`, `chair`, `door`, `trash_bin`) están recortados al ras, a escala 1:1 con el fondo. El punto de apoyo, la colisión y el área de click de cada uno se ajustan en su escena. `room/manifest.json` tiene la posición original de cada pieza dentro del fondo.
+
+El Player actual sale de `sprites/characters/player/` con cuadros de **64×90** (pies abajo al centro). Solo hay `idle`; `walk` es un rebote provisorio hecho a partir de `idle`, y las animaciones que faltan (`sit`, `sleep`, `use_computer`) caen en `idle`.
+
 ## Player — `sprites/player/player_<animación>_<dirección>.png`
 
 Cada archivo es una **tira horizontal** de cuadros de 64×64. La cantidad de cuadros sale sola del ancho de la imagen (1 cuadro = 64 px de ancho, 4 cuadros = 256 px).

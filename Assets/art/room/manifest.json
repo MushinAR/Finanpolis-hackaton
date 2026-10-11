@@ -1,0 +1,397 @@
+{
+  "grid": {
+    "tile": [
+      64,
+      32
+    ],
+    "cell": [
+      64,
+      64
+    ],
+    "art_reference_tile": [
+      144,
+      72
+    ]
+  },
+  "room": {
+    "canvas": [
+      500,
+      340
+    ],
+    "room_floor": {
+      "file": "room/room_floor.png",
+      "pos": [
+        0,
+        0
+      ],
+      "source": "suelo"
+    },
+    "room_wall_left": {
+      "file": "room/room_wall_left.png",
+      "pos": [
+        0,
+        0
+      ],
+      "source": "pared izquierda"
+    },
+    "room_wall_right": {
+      "file": "room/room_wall_right.png",
+      "pos": [
+        0,
+        0
+      ],
+      "source": "pared derecha"
+    },
+    "room_wall_trim": {
+      "file": "room/room_wall_trim.png",
+      "pos": [
+        0,
+        0
+      ],
+      "source": "bordes pared"
+    },
+    "room_plaster": {
+      "file": "room/room_plaster.png",
+      "pos": [
+        0,
+        0
+      ],
+      "source": "revocado"
+    },
+    "room_wall_front": {
+      "file": "room/room_wall_front.png",
+      "pos": [
+        0,
+        0
+      ],
+      "source": "pared trasera"
+    },
+    "room_background": {
+      "file": "room/room_background.png",
+      "pos": [
+        0,
+        0
+      ],
+      "note": "floor + walls merged; draw room_wall_front on top of everything"
+    }
+  },
+  "props": {
+    "door": {
+      "file": "sprites/props/bedroom/door.png",
+      "size": [
+        54,
+        115
+      ],
+      "room_pos": [
+        383,
+        57
+      ],
+      "base": [
+        27,
+        115
+      ],
+      "source": "puerta"
+    },
+    "wardrobe": {
+      "file": "sprites/props/bedroom/wardrobe.png",
+      "size": [
+        123,
+        152
+      ],
+      "room_pos": [
+        86,
+        62
+      ],
+      "base": [
+        61,
+        152
+      ],
+      "source": "ropero"
+    },
+    "wardrobe_door": {
+      "file": "sprites/props/bedroom/wardrobe_door.png",
+      "size": [
+        49,
+        91
+      ],
+      "room_pos": [
+        122,
+        125
+      ],
+      "base": [
+        24,
+        91
+      ],
+      "source": "puerta ropero"
+    },
+    "bed": {
+      "file": "sprites/props/bedroom/bed.png",
+      "size": [
+        172,
+        122
+      ],
+      "room_pos": [
+        180,
+        60
+      ],
+      "base": [
+        86,
+        122
+      ],
+      "source": "cama"
+    },
+    "chair": {
+      "file": "sprites/props/bedroom/chair.png",
+      "size": [
+        53,
+        75
+      ],
+      "room_pos": [
+        213,
+        191
+      ],
+      "base": [
+        26,
+        75
+      ],
+      "source": "silla"
+    },
+    "desk": {
+      "file": "sprites/props/bedroom/desk.png",
+      "size": [
+        127,
+        105
+      ],
+      "room_pos": [
+        138,
+        212
+      ],
+      "base": [
+        63,
+        105
+      ],
+      "source": "escritorio"
+    },
+    "computer": {
+      "file": "sprites/props/bedroom/computer.png",
+      "size": [
+        84,
+        91
+      ],
+      "room_pos": [
+        164,
+        208
+      ],
+      "base": [
+        42,
+        91
+      ],
+      "source": "computadora"
+    },
+    "trash_bin": {
+      "file": "sprites/props/bedroom/trash_bin.png",
+      "size": [
+        27,
+        30
+      ],
+      "room_pos": [
+        122,
+        239
+      ],
+      "base": [
+        13,
+        30
+      ],
+      "source": "basura"
+    }
+  },
+  "items": {
+    "backpack": {
+      "file": "sprites/items/backpack.png",
+      "size": [
+        27,
+        22
+      ],
+      "room_pos": [
+        192,
+        162
+      ],
+      "base": [
+        13,
+        22
+      ],
+      "source": "mochila"
+    }
+  },
+  "tiles": {
+    "floor_carpet": {
+      "file": "tilesets/floor_carpet.png",
+      "cell": [
+        64,
+        64
+      ],
+      "diamond": [
+        64,
+        32
+      ],
+      "anchor": [
+        32,
+        48
+      ]
+    },
+    "wall_left_segment": {
+      "file": "tilesets/wall_left_segment.png",
+      "size": [
+        28,
+        110
+      ],
+      "repeat_step": [
+        28,
+        -14
+      ],
+      "source": "pared izquierda"
+    },
+    "wall_right_segment": {
+      "file": "tilesets/wall_right_segment.png",
+      "size": [
+        28,
+        111
+      ],
+      "repeat_step": [
+        28,
+        14
+      ],
+      "source": "pared derecha"
+    }
+  },
+  "characters": {
+    "china": {
+      "dir": "sprites/characters/china/",
+      "frame": [
+        64,
+        90
+      ],
+      "feet": [
+        32,
+        90
+      ],
+      "animations": {
+        "idle": 1
+      },
+      "source": "bocetos/china"
+    },
+    "perez": {
+      "dir": "sprites/characters/perez/",
+      "frame": [
+        64,
+        90
+      ],
+      "feet": [
+        32,
+        90
+      ],
+      "animations": {
+        "idle": 1
+      },
+      "source": "bocetos/civil 1"
+    },
+    "oficinista_1": {
+      "dir": "sprites/characters/oficinista_1/",
+      "frame": [
+        64,
+        90
+      ],
+      "feet": [
+        32,
+        90
+      ],
+      "animations": {
+        "idle": 1
+      },
+      "source": "bocetos/oficinista 1"
+    },
+    "oficinista_2": {
+      "dir": "sprites/characters/oficinista_2/",
+      "frame": [
+        64,
+        90
+      ],
+      "feet": [
+        32,
+        90
+      ],
+      "animations": {
+        "idle": 1
+      },
+      "source": "bocetos/oficinista 2"
+    },
+    "oficinista_3": {
+      "dir": "sprites/characters/oficinista_3/",
+      "frame": [
+        64,
+        90
+      ],
+      "feet": [
+        32,
+        90
+      ],
+      "animations": {
+        "idle": 1
+      },
+      "source": "bocetos/oficinista 3"
+    },
+    "player": {
+      "dir": "sprites/characters/player/",
+      "frame": [
+        64,
+        90
+      ],
+      "feet": [
+        32,
+        90
+      ],
+      "animations": {
+        "idle": 1
+      },
+      "source": "bocetos/pj"
+    }
+  },
+  "character_parts": {
+    "bodies": {
+      "dir": "sprites/character_parts/bodies/",
+      "files": 30,
+      "empty_skipped": 0,
+      "canvas": [
+        64,
+        64
+      ]
+    },
+    "heads": {
+      "dir": "sprites/character_parts/heads/",
+      "files": 15,
+      "empty_skipped": 0,
+      "canvas": [
+        32,
+        32
+      ]
+    },
+    "hair": {
+      "dir": "sprites/character_parts/hair/",
+      "files": 30,
+      "empty_skipped": 0,
+      "canvas": [
+        80,
+        80
+      ]
+    },
+    "beards": {
+      "dir": "sprites/character_parts/beards/",
+      "files": 18,
+      "empty_skipped": 15,
+      "canvas": [
+        80,
+        80
+      ]
+    }
+  }
+}
