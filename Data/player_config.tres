@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_cfg")
+frame_size = Vector2i(64, 90)
+sprites_path = "res://Assets/art/sprites/characters/player"

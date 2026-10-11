@@ -120,10 +120,13 @@ func face_towards(direction: Vector2) -> void:
 
 
 ## Reproduce "<nombre>_<dirección>" (ej: walk_se). Si no existe, prueba solo "<nombre>".
-## Si todavía no hay esa animación, no hace nada.
+## Si todavía no hay esa animación, usa idle para que al menos mire para el lado correcto.
 func play_animation(animation: StringName) -> void:
 	var directional := StringName("%s_%s" % [animation, facing])
+	var idle := StringName("idle_%s" % facing)
 	if sprite.sprite_frames.has_animation(directional):
 		sprite.play(directional)
 	elif sprite.sprite_frames.has_animation(animation):
 		sprite.play(animation)
+	elif sprite.sprite_frames.has_animation(idle):
+		sprite.play(idle)
