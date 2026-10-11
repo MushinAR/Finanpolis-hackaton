@@ -55,6 +55,7 @@ func _on_chosen(index: int) -> void:
 		return
 	# Antes de irnos, que el WorldState se acuerde de cómo quedó esta habitación.
 	WorldState.leave_room()
+	Sfx.play(&"door_open")
 	get_tree().change_scene_to_file(target_scene)
 
 ## La card es de la sala, no de la puerta: la buscamos por grupo así no importa

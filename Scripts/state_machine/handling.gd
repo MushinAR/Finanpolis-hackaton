@@ -31,6 +31,8 @@ func _on_done() -> void:
 		# Puede que alguien más lo haya tomado o que ya lleve otra cosa.
 		if is_instance_valid(item) and not item.is_carried and player.carried_item == null:
 			player.attach_item(item)
+			Sfx.play(&"pickup")
 	elif action == &"drop":
 		player.drop_carried_item()
+		Sfx.play(&"pickup")
 	state_machine.switch_state(&"idle")

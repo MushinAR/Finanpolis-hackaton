@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 WorldState="*res://Scripts/core/world_state.gd"
+Sfx="*res://Scripts/core/sfx.gd"
 
 [display]
 
