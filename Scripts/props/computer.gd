@@ -18,7 +18,6 @@ extends Prop
 var resume_off_in: float = -1.0
 
 @onready var state_machine: StateMachine = $StateMachine
-@onready var sprite: Sprite2D = $Sprite
 
 
 func _ready() -> void:

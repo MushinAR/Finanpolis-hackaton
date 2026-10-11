@@ -26,6 +26,7 @@ var user: Player
 # (o sin UsePoint) lo usa desde ahí mismo, sin subirse al prop.
 @onready var stand_point: Marker2D = get_node_or_null("StandPoint")
 @onready var use_point: Marker2D = get_node_or_null("UsePoint")
+@onready var sprite: Sprite2D = $Sprite
 
 
 func _ready() -> void:

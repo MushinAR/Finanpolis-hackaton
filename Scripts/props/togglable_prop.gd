@@ -10,7 +10,6 @@ extends Prop
 @export var starts_on: bool = false
 
 @onready var state_machine: StateMachine = $StateMachine
-@onready var sprite: Sprite2D = $Sprite
 
 
 func _ready() -> void:
