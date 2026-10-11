@@ -27,4 +27,4 @@ polygon = PackedVector2Array(39, -77, 97, -48, 0, 0, -58, -29)
 position = Vector2(50, -5)
 
 [node name="UsePoint" parent="." index="4"]
-position = Vector2(20, -41)
+position = Vector2(48, -51)

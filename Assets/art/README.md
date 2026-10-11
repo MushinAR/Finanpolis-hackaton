@@ -67,7 +67,7 @@ Cada archivo es una **tira horizontal** de cuadros de 64×90 (pies abajo al cent
 - **Direcciones hoy (4):** `se`, `sw`, `nw`, `ne`.
 - Si falta un archivo, el juego no falla: esa animación se ve como `idle`.
 
-Hoy hay `idle` (1 cuadro) y `walk` (rebote provisorio); faltan `sit`, `sleep` y `use_computer`.
+Hoy hay `idle` (1 cuadro), `walk` (rebote provisorio) y `sleep` (4 cuadros, solo `se`, que es para donde mira la cama); faltan `sit` y `use_computer`. `sleep` está dibujado para la cama de la pieza: la cabeza acostada sobre la almohada, el cuerpo como un bulto bajo la frazada y las Z. Depende de dónde está el `UsePoint` en `Scenes/bed.tscn`; si cambia el dibujo de la cama hay que reacomodarlo.
 
 La carpeta vieja `sprites/player/` (cuadros de 64×64 del primer placeholder) ya no la usa nada.
 
