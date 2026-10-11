@@ -1,0 +1,40 @@
+{
+  "source": "Arte/casa demo/tama\u00f1os.png",
+  "canvas": [
+    586,
+    386
+  ],
+  "tiles": [
+    4,
+    4
+  ],
+  "art_tile": [
+    144,
+    72
+  ],
+  "wall_height": 98,
+  "floor_corners": [
+    [
+      293,
+      98
+    ],
+    [
+      581,
+      242
+    ],
+    [
+      293,
+      386
+    ],
+    [
+      5,
+      242
+    ]
+  ],
+  "files": {
+    "room_background.png": "floor + back walls, what the game loads",
+    "floor_tile.png": "the artist's floor tile",
+    "wall_panel.png": "the artist's wall panel (right wall; the left wall is this panel mirrored)"
+  },
+  "front_wall": "room/wall_front_left.png and room/wall_front_right.png repeated, one per floor tile (positions in Scenes/floor_livingroom.tscn)"
+}
