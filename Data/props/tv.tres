@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PropData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/prop_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+display_name = "Tele"
+animation = &"idle"
+facing = &"ne"
+duration = 0.0
+accepts_items = false
+
+effects_per_second = {
+"estres": -1.5,
+"felicidad": 1.0,
+"energia": -0.3
+}
