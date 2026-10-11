@@ -1,6 +1,6 @@
 extends Node2D
-## Mundo de prueba: convierte los clicks en órdenes para el Player y la cámara lo sigue.
-## Más adelante la parte de interacción puede irse a interaction_system.gd.
+## Una habitación (pieza, living, patio): convierte los clicks en órdenes para el Player
+## y la cámara lo sigue. Más adelante la parte de interacción puede irse a interaction_system.gd.
 
 @onready var player: Player = $Player
 @onready var camera: Camera2D = $Camera2D
@@ -48,8 +48,8 @@ func _process(_delta: float) -> void:
 	camera.global_position = player.global_position
 
 
-# El piso caminable sale de los tiles del Ground; los obstáculos son todo lo que
-# esté en el grupo "nav_obstacles" (paredes, props, cajas). Se cocina al arrancar.
+# El piso caminable es el borde que da el Floor; los obstáculos son todo lo que
+# esté en el grupo "nav_obstacles" (props, cajas). Se cocina al arrancar.
 func _bake_navigation() -> void:
 	var nav_poly := nav_region.navigation_polygon
 	nav_poly.clear_outlines()

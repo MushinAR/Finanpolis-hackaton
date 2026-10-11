@@ -2,7 +2,7 @@ class_name Door
 extends Area2D
 ## Puerta que lleva a otra habitación. Cuando el Player entra en su zona,
 ## se le pregunta si quiere pasar. No es un Prop: no se clickea, se dispara solo.
-## La pregunta la muestra el PopupCard de la sala (el nodo del grupo "popup"),
+## La pregunta la muestra el PopupCard de la sala (el nodo del grupo "popup").
 
 ## A qué escena lleva. Se elige desde el inspector.
 @export_file("*.tscn") var target_scene: String = ""

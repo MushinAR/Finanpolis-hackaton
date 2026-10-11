@@ -1,8 +1,8 @@
 class_name Floor
 extends Node2D
-## El piso del nivel: dos capas de TileMap (Ground = piso, Walls = paredes con colisión).
-## Se pinta desde el editor. La navegación sale de acá: todo el Ground es caminable
-## y lo que tenga colisión (Walls) lo bloquea.
+## El piso de una habitación. La navegación sale de acá.
+## Hoy las habitaciones son un dibujo entero y dan su borde caminable con `walkable_outline`.
+## También sirve para un piso de tiles (capas Ground y Walls): ahí el borde sale del Ground pintado.
 
 ## Para pisos que son un dibujo entero y no tiles (ej: la pieza): el borde caminable,
 ## en coordenadas locales. Si está vacío, sale del Ground.

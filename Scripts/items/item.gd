@@ -6,6 +6,9 @@ extends Area2D
 ## Clickearon el item. El World la escucha y le avisa al Player.
 signal requested(item: Item)
 
+## Offset del dibujo cuando el item está en el piso.
+const FLOOR_OFFSET := Vector2(0, -16)
+
 @export var data: ItemData
 
 ## true mientras el Player lo lleva en las manos.
@@ -17,8 +20,6 @@ var persist_id: String = ""
 @onready var click_area: CollisionShape2D = $ClickArea
 @onready var sprite: Sprite2D = $Sprite
 
-## Offset del dibujo cuando el item esta en el piso
-const FLOOR_OFFSET := Vector2(0, -16)
 
 func _ready() -> void:
 	input_event.connect(_on_input_event)

@@ -40,8 +40,6 @@ La pieza usa el arte final y no es un tilemap: `room/room_background.png` es el 
 
 Los muebles (`bed`, `wardrobe`, `desk`, `computer`, `chair`, `door`, `trash_bin`) están recortados al ras, a escala 1:1 con el fondo. El punto de apoyo, la colisión y el área de click de cada uno se ajustan en su escena. `room/manifest.json` tiene la posición original de cada pieza dentro del fondo.
 
-El Player actual sale de `sprites/characters/player/` con cuadros de **64×90** (pies abajo al centro). Solo hay `idle`; `walk` es un rebote provisorio hecho a partir de `idle`, y las animaciones que faltan (`sit`, `sleep`, `use_computer`) caen en `idle`.
-
 ## Living — `rooms/livingroom/`
 
 Armado con las dos piezas de `Arte/casa demo/tamaños.png` (tile de 144×72): `floor_tile.png` (baldosa) y `wall_panel.png` (paño de pared; la pared izquierda es el mismo espejado). `room_background.png` es el piso de 4×4 baldosas más las dos paredes del fondo. Se arma en `Scenes/floor_livingroom.tscn`.
@@ -54,15 +52,17 @@ Hay **un solo tramo por lado**, de 72 px, que se repite: `room/wall_front_left.p
 
 El alto que cuenta para la transparencia es el parámetro `height` del material (cuánto sube la pared por encima del borde del piso). Si el arte de la pared se hace más alto, hay que subir ese número.
 
-## Player — `sprites/player/player_<animación>_<dirección>.png`
+## Player — `sprites/characters/player/player_<animación>_<dirección>.png`
 
-Cada archivo es una **tira horizontal** de cuadros de 64×64. La cantidad de cuadros sale sola del ancho de la imagen (1 cuadro = 64 px de ancho, 4 cuadros = 256 px).
+Cada archivo es una **tira horizontal** de cuadros de 64×90 (pies abajo al centro). La cantidad de cuadros sale sola del ancho de la imagen (1 cuadro = 64 px de ancho, 4 cuadros = 256 px). La carpeta y el tamaño del cuadro salen de `Data/player_config.tres`.
 
-- **Animaciones hoy:** `idle`, `walk`, `sit`, `sleep`, `use_computer`.
+- **Animaciones que busca el juego:** `idle`, `walk`, `sit`, `sleep`, `use_computer`.
 - **Direcciones hoy (4):** `se`, `sw`, `nw`, `ne`.
-- Si falta un archivo, el juego no falla: esa animación simplemente no se ve.
+- Si falta un archivo, el juego no falla: esa animación se ve como `idle`.
 
-Placeholder actual: idle 1 cuadro, walk 4, sit 1, sleep 1, use_computer 2.
+Hoy hay `idle` (1 cuadro) y `walk` (rebote provisorio); faltan `sit`, `sleep` y `use_computer`.
+
+La carpeta vieja `sprites/player/` (cuadros de 64×64 del primer placeholder) ya no la usa nada.
 
 ## Interfaz — `ui/icons/*.svg` y `Assets/fonts/`
 

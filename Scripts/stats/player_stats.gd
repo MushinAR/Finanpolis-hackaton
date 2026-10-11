@@ -67,8 +67,7 @@ func _process(delta: float) -> void:
 ## Devuelve la variable entera (para leerle la zona, el color, el StatData...).
 func get_stat(id: StringName) -> PlayerStat:
 	_build()
-	var stat: PlayerStat = _stats.get(id)
-	return stat
+	return _stats.get(id)
 
 
 ## Todas las variables, en el orden del StatSet. Lo usa el HUD para armarse solo.
