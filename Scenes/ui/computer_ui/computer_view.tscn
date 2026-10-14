@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://oai6qj5ejn4f"]
+
+[node name="ComputerView" type="Control" unique_id=730026785]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ComputerViewBackground" type="ColorRect" parent="." unique_id=1347252336]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)

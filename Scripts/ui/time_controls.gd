@@ -17,8 +17,10 @@ const SPEEDS: Array[float] = [1.0, 2.0, 4.0, 8.0]
 @onready var buttons: HBoxContainer = %Speeds
 @onready var date_label: Label = %DateLabel
 
-var current_speed: float = 1.0
+@onready var time_manager: TimeManager = %TimeManager
 
+
+var current_speed: float = 1.0
 
 func _ready() -> void:
 	for i in buttons.get_child_count():
@@ -26,11 +28,13 @@ func _ready() -> void:
 		if button:
 			button.pressed.connect(_on_button_pressed.bind(i))
 	_select(0, false)
-
+	
+	time_manager.time_passed.connect(_update_date_label)
+	speed_changed.connect(time_manager.set_time_speed)
 
 ## La usa el juego para frenar a x1 ante un evento importante. El botón se marca solo.
-func force_speed(scale: float = 1.0) -> void:
-	var index := SPEEDS.find(scale)
+func force_speed(time_scale: float = 1.0) -> void:
+	var index := SPEEDS.find(time_scale)
 	if index >= 0:
 		_select(index, true)
 
@@ -52,3 +56,7 @@ func _select(index: int, notify: bool) -> void:
 	current_speed = SPEEDS[index]
 	if notify:
 		speed_changed.emit(current_speed)
+
+func _update_date_label(time_size : TimeManager.TimeSize):
+	date_label.text = "| %s:%s | Día %s | Semana %s | Año %s |" % \
+	[time_manager.get_time(TimeManager.TimeSize.HOUR),time_manager.get_time(TimeManager.TimeSize.MINUTE),time_manager.get_time(TimeManager.TimeSize.DAY),time_manager.get_time(TimeManager.TimeSize.WEEK),time_manager.get_time(TimeManager.TimeSize.YEAR)]

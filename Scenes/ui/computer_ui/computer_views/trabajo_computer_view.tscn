@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bbjcrpvsdwfof"]
+
+[ext_resource type="PackedScene" uid="uid://oai6qj5ejn4f" path="res://Scenes/ui/computer_ui/computer_view.tscn" id="1_453hn"]
+
+[node name="TrabajoComputerView" unique_id=730026785 instance=ExtResource("1_453hn")]
+
+[node name="ComputerViewBackground" parent="." index="0" unique_id=1347252336]
+color = Color(1, 0.54901963, 0, 1)

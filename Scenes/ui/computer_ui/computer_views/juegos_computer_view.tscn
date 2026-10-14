@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cj40qrs2igjmt"]
+
+[ext_resource type="PackedScene" uid="uid://oai6qj5ejn4f" path="res://Scenes/ui/computer_ui/computer_view.tscn" id="1_u1rnd"]
+
+[node name="JuegosComputerView" unique_id=730026785 instance=ExtResource("1_u1rnd")]
+clip_contents = true
+
+[node name="ComputerViewBackground" parent="." index="0" unique_id=1347252336]
+color = Color(0, 0.88089883, 0.9493521, 1)

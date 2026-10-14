@@ -1,8 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://r5rhaswmgpa7"]
 
-[ext_resource type="Script" path="res://Scripts/ui/time_controls.gd" id="1_time"]
-[ext_resource type="FontFile" path="res://Assets/fonts/Poppins-Regular.ttf" id="2_medium"]
-[ext_resource type="FontFile" path="res://Assets/fonts/Poppins-Regular.ttf" id="3_regular"]
+[ext_resource type="Script" uid="uid://db74tqup77x4f" path="res://Scripts/ui/time_controls.gd" id="1_time"]
+[ext_resource type="Script" uid="uid://buacqafw4fwht" path="res://Scripts/time_manager/time_manager.gd" id="3_g5e2n"]
+[ext_resource type="FontFile" uid="uid://dhs53gm4optbl" path="res://Assets/fonts/Poppins-Regular.ttf" id="3_regular"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_group"]
 content_margin_left = 3.0
@@ -19,7 +19,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-anti_aliasing = true
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plain"]
 
@@ -29,92 +28,103 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-anti_aliasing = true
 
-[node name="TimeControls" type="HBoxContainer"]
+[node name="TimeControls" type="HBoxContainer" unique_id=1165942855]
+offset_right = 287.0
+offset_bottom = 26.0
 theme_override_constants/separation = 14
 script = ExtResource("1_time")
 
-[node name="Selector" type="PanelContainer" parent="."]
+[node name="Selector" type="PanelContainer" parent="." unique_id=2099422760]
+layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_group")
 
-[node name="Speeds" type="HBoxContainer" parent="Selector"]
+[node name="Speeds" type="HBoxContainer" parent="Selector" unique_id=487042163]
 unique_name_in_owner = true
+layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Speed1" type="Button" parent="Selector/Speeds"]
+[node name="Speed1" type="Button" parent="Selector/Speeds" unique_id=1242592373]
 custom_minimum_size = Vector2(26, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.118, 0.118, 0.118, 1)
+theme_override_colors/font_focus_color = Color(0.118, 0.118, 0.118, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_regular")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_plain")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_selected")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_selected")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
 toggle_mode = true
 text = "x1"
+
+[node name="Speed2" type="Button" parent="Selector/Speeds" unique_id=333860674]
+custom_minimum_size = Vector2(26, 20)
+layout_mode = 2
 theme_override_colors/font_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_fonts/font = ExtResource("2_medium")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_regular")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_selected")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_selected")
-
-[node name="Speed2" type="Button" parent="Selector/Speeds"]
-custom_minimum_size = Vector2(26, 20)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
 toggle_mode = true
 text = "x2"
+
+[node name="Speed4" type="Button" parent="Selector/Speeds" unique_id=1533038222]
+custom_minimum_size = Vector2(26, 20)
+layout_mode = 2
 theme_override_colors/font_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_fonts/font = ExtResource("2_medium")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_regular")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_selected")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_selected")
-
-[node name="Speed4" type="Button" parent="Selector/Speeds"]
-custom_minimum_size = Vector2(26, 20)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
 toggle_mode = true
 text = "x4"
+
+[node name="Speed8" type="Button" parent="Selector/Speeds" unique_id=1888921094]
+custom_minimum_size = Vector2(26, 20)
+layout_mode = 2
 theme_override_colors/font_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_fonts/font = ExtResource("2_medium")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_regular")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_selected")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_selected")
-
-[node name="Speed8" type="Button" parent="Selector/Speeds"]
-custom_minimum_size = Vector2(26, 20)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
 toggle_mode = true
 text = "x8"
-theme_override_colors/font_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_hover_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.118, 0.118, 0.118, 1)
-theme_override_fonts/font = ExtResource("2_medium")
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_plain")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_selected")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_selected")
 
-[node name="DateLabel" type="Label" parent="."]
+[node name="DateLabel" type="Label" parent="." unique_id=1928081203]
 unique_name_in_owner = true
-size_flags_vertical = 4
+layout_mode = 2
 theme_override_colors/font_color = Color(0.541, 0.541, 0.541, 1)
 theme_override_fonts/font = ExtResource("3_regular")
 theme_override_font_sizes/font_size = 12
-text = "Semana 1 · Enero"
+text = "| 10:10 | Día 1 | Semana 1 | Año 2000 |"
+
+[node name="TimeManager" type="Node" parent="." unique_id=826585959]
+unique_name_in_owner = true
+script = ExtResource("3_g5e2n")

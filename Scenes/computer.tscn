@@ -1,24 +1,27 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://xmr3d1t5u504"]
 
 [ext_resource type="PackedScene" path="res://Scenes/prop.tscn" id="1_prop"]
-[ext_resource type="Script" path="res://Scripts/props/computer.gd" id="2_script"]
-[ext_resource type="Resource" path="res://Data/props/computer.tres" id="3_data"]
-[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/bedroom/computer.png" id="4_pc"]
-[ext_resource type="Texture2D" path="res://Assets/art/sprites/props/bedroom/desk.png" id="5_desk"]
-[ext_resource type="Script" path="res://Scripts/state_machine/state_machine.gd" id="7_sm"]
-[ext_resource type="Script" path="res://Scripts/props/states/computer_off.gd" id="8_off"]
-[ext_resource type="Script" path="res://Scripts/props/states/computer_booting.gd" id="9_booting"]
-[ext_resource type="Script" path="res://Scripts/props/states/computer_in_use.gd" id="10_inuse"]
-[ext_resource type="Script" path="res://Scripts/props/states/computer_on.gd" id="11_on"]
+[ext_resource type="Script" uid="uid://w4nmks6e2ah1" path="res://Scripts/props/computer.gd" id="2_script"]
+[ext_resource type="Resource" uid="uid://bytwq2wh3wa27" path="res://Data/props/computer.tres" id="3_data"]
+[ext_resource type="Texture2D" uid="uid://dbt5ifi6ich26" path="res://Assets/art/sprites/props/bedroom/computer.png" id="4_pc"]
+[ext_resource type="Texture2D" uid="uid://cgtcpywpqn82l" path="res://Assets/art/sprites/props/bedroom/desk.png" id="5_desk"]
+[ext_resource type="Script" uid="uid://b3rbm2qi44ko8" path="res://Scripts/state_machine/state_machine.gd" id="7_sm"]
+[ext_resource type="Script" uid="uid://t11lhq4c78pj" path="res://Scripts/props/states/computer_off.gd" id="8_off"]
+[ext_resource type="Script" uid="uid://d1u006v22jlrb" path="res://Scripts/props/states/computer_booting.gd" id="9_booting"]
+[ext_resource type="Script" uid="uid://dw0mj8fsrkyxu" path="res://Scripts/props/states/computer_in_use.gd" id="10_inuse"]
+[ext_resource type="PackedScene" uid="uid://cfh1h0u77m6nr" path="res://Scenes/ui/computer_ui/computer_ui.tscn" id="11_myaep"]
+[ext_resource type="Script" uid="uid://ud2gxnv078p8" path="res://Scripts/props/states/computer_on.gd" id="11_on"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_click"]
 size = Vector2(84, 75)
 
-[node name="Computer" instance=ExtResource("1_prop")]
+[node name="Computer" unique_id=2126855085 instance=ExtResource("1_prop")]
 script = ExtResource("2_script")
 screen_off = ExtResource("4_pc")
 screen_booting = ExtResource("4_pc")
 screen_on = ExtResource("4_pc")
+boot_time = 1.5
+idle_off_time = 8.0
 data = ExtResource("3_data")
 
 [node name="Sprite" parent="." index="0"]
@@ -26,7 +29,7 @@ texture = ExtResource("4_pc")
 centered = false
 offset = Vector2(-52, -109)
 
-[node name="Desk" type="Sprite2D" parent="Sprite" index="0"]
+[node name="Desk" type="Sprite2D" parent="Sprite" index="0" unique_id=1422277800]
 show_behind_parent = true
 texture = ExtResource("5_desk")
 centered = false
@@ -45,18 +48,23 @@ position = Vector2(59, -55)
 [node name="UsePoint" parent="." index="4"]
 position = Vector2(24, -58)
 
-[node name="StateMachine" type="Node" parent="." index="5"]
+[node name="StateMachine" type="Node" parent="." index="5" unique_id=1269903117]
 script = ExtResource("7_sm")
 initial_state = &"off"
 
-[node name="Off" type="Node" parent="StateMachine"]
+[node name="Off" type="Node" parent="StateMachine" index="0" unique_id=971501002]
 script = ExtResource("8_off")
 
-[node name="Booting" type="Node" parent="StateMachine"]
+[node name="Booting" type="Node" parent="StateMachine" index="1" unique_id=1170720114]
 script = ExtResource("9_booting")
 
-[node name="InUse" type="Node" parent="StateMachine"]
+[node name="InUse" type="Node" parent="StateMachine" index="2" unique_id=944772301 node_paths=PackedStringArray("computer_ui")]
 script = ExtResource("10_inuse")
+computer_ui = NodePath("../../ComputerUI")
 
-[node name="On" type="Node" parent="StateMachine"]
+[node name="On" type="Node" parent="StateMachine" index="3" unique_id=535474680]
 script = ExtResource("11_on")
+
+[node name="ComputerUI" parent="." index="6" unique_id=1124789216 instance=ExtResource("11_myaep")]
+unique_name_in_owner = true
+visible = false

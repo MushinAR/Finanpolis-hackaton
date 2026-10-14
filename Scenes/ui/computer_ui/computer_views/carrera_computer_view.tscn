@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://co8q11ttmft70"]
+
+[ext_resource type="PackedScene" uid="uid://oai6qj5ejn4f" path="res://Scenes/ui/computer_ui/computer_view.tscn" id="1_8svo4"]
+
+[node name="CarreraComputerView" unique_id=730026785 instance=ExtResource("1_8svo4")]

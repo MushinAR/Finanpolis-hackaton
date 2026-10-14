@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://cfh1h0u77m6nr"]
+
+[ext_resource type="Script" uid="uid://c0iks856xsyhm" path="res://Scripts/ui/computer_ui/computer_ui.gd" id="1_su7t1"]
+[ext_resource type="Script" uid="uid://bvybl07wf7ui0" path="res://Scripts/ui/computer_ui/computer_tab_button.gd" id="2_k5px0"]
+[ext_resource type="PackedScene" uid="uid://cr2m1uss3fay3" path="res://Scenes/ui/computer_ui/computer_views/main_computer_view.tscn" id="3_su7t1"]
+[ext_resource type="PackedScene" uid="uid://co8q11ttmft70" path="res://Scenes/ui/computer_ui/computer_views/carrera_computer_view.tscn" id="4_gxwro"]
+[ext_resource type="PackedScene" uid="uid://bbjcrpvsdwfof" path="res://Scenes/ui/computer_ui/computer_views/trabajo_computer_view.tscn" id="5_jxrx6"]
+[ext_resource type="PackedScene" uid="uid://cj40qrs2igjmt" path="res://Scenes/ui/computer_ui/computer_views/juegos_computer_view.tscn" id="6_k1rmp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cnbw"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ComputerUI" type="CanvasLayer" unique_id=1124789216]
+script = ExtResource("1_su7t1")
+
+[node name="ComputerBackground" type="ColorRect" parent="." unique_id=387743497]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -417.5
+offset_top = -248.0
+offset_right = 417.5
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8677018, 0.78106594, 0.5845881, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ComputerView" type="Control" parent="." unique_id=1489547544]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 190.0
+offset_top = 108.0
+offset_right = 962.0
+offset_bottom = 557.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ComputerTabs" type="Control" parent="ComputerView" unique_id=870799312]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TabsBackground" type="ColorRect" parent="ComputerView/ComputerTabs" unique_id=1259342584]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TabsContainer" type="HBoxContainer" parent="ComputerView/ComputerTabs" unique_id=472514297]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainButton" type="Button" parent="ComputerView/ComputerTabs/TabsContainer" unique_id=1117813682]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7cnbw")
+text = "Main"
+script = ExtResource("2_k5px0")
+tab_scene = ExtResource("3_su7t1")
+
+[node name="CarreraButton" type="Button" parent="ComputerView/ComputerTabs/TabsContainer" unique_id=798986635]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7cnbw")
+text = "Carrera"
+script = ExtResource("2_k5px0")
+tab_scene = ExtResource("4_gxwro")
+
+[node name="TrabajoButton" type="Button" parent="ComputerView/ComputerTabs/TabsContainer" unique_id=1927467003]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7cnbw")
+text = "Trabajo"
+script = ExtResource("2_k5px0")
+tab_scene = ExtResource("5_jxrx6")
+
+[node name="JuegosButton" type="Button" parent="ComputerView/ComputerTabs/TabsContainer" unique_id=1975998422]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7cnbw")
+text = "Juegos"
+script = ExtResource("2_k5px0")
+tab_scene = ExtResource("6_k1rmp")
+
+[node name="CurrentComputerView" type="Control" parent="ComputerView" unique_id=1666658412]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainComputerView" parent="ComputerView/CurrentComputerView" unique_id=730026785 instance=ExtResource("3_su7t1")]
+layout_mode = 1
