@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUSHIN.AR // TERMINAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/mushin.css" />
+</head>
+<body>
+  <div id="game-click" class="layer">
+    <div class="room">
+      <div class="pc-unit">
+        <button id="monitor" class="monitor" type="button" aria-label="Conectar a mushin.ar">
+          <div class="monitor-bezel">
+            <div class="monitor-screen">
+              <div class="idle-dot"></div>
+              <p class="idle-text">STANDBY</p>
+            </div>
+          </div>
+        </button>
+        <div class="pc-body">
+          <span class="led"></span>
+          <span class="drive"></span>
+        </div>
+        <p class="click-hint">CLICK PARA CONECTAR<br /><span>mushin.ar</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="boot" class="layer hidden">
+    <pre id="boot-log" class="boot-log"></pre>
+  </div>
+
+  <div id="login" class="layer hidden">
+    <div class="crt crt-plain">
+      <div class="scanlines"></div>
+      <div class="signup-wrap">
+        <div class="coach-inline">
+          <div class="mascot" aria-hidden="true">🦉</div>
+          <div class="bubble">
+            <p class="coach-name">MUSHI</p>
+            <p>¿Quién está jugando hoy? Escribí tu nombre de jugador para entrar.</p>
+          </div>
+        </div>
+        <form class="win signup-win" id="login-form" novalidate>
+          <h2 class="win-h">INGRESAR</h2>
+          <label class="field">NOMBRE DE JUGADOR
+            <input id="login-name" maxlength="16" autocomplete="off" spellcheck="false" placeholder="ej: nico_inversor" />
+          </label>
+          <p class="hint">De 3 a 16 letras, números o _. No pongas tu nombre real.</p>
+          <p class="form-err" id="login-err" role="alert"></p>
+          <div class="su-btns">
+            <button type="submit" class="btn">ENTRAR</button>
+          </div>
+          <div id="login-saved" class="hidden">
+            <p class="field-label saved-title">JUGADORES EN ESTA PC</p>
+            <ul class="player-list" id="login-list"></ul>
+          </div>
+        </form>
+        <p class="disclaimer">Simulación educativa del juego. No uses datos ni contraseñas reales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="signup" class="layer hidden">
+    <div class="crt crt-plain">
+      <div class="scanlines"></div>
+      <div class="signup-wrap">
+        <div class="coach-inline">
+          <div class="mascot" aria-hidden="true">🦉</div>
+          <div class="bubble">
+            <p class="coach-name">MUSHI</p>
+            <p id="signup-tip"></p>
+          </div>
+        </div>
+        <form class="win signup-win" id="signup-form" novalidate>
+          <h2 class="win-h">NUEVA CUENTA <span id="su-name"></span> <span id="signup-step">1/2</span></h2>
+
+          <div class="su-step" data-step="1">
+            <p class="field-label">ELEGÍ TU AVATAR</p>
+            <div class="pick-grid" id="su-avatars"></div>
+          </div>
+
+          <div class="su-step hidden" data-step="2">
+            <p class="field-label">¿PARA QUÉ QUERÉS AHORRAR?</p>
+            <div class="pick-list" id="su-goals"></div>
+            <label class="field">MONTO DE TU META (FNP)
+              <input id="su-goal-amt" type="number" min="100" step="100" value="3000" />
+            </label>
+          </div>
+
+          <div class="su-step hidden" data-step="3">
+            <pre class="boot-log su-log" id="su-log"></pre>
+          </div>
+
+          <p class="form-err" id="su-err" role="alert"></p>
+          <div class="su-btns">
+            <button type="button" class="btn ghost" id="su-back">ATRÁS</button>
+            <button type="submit" class="btn" id="su-next">SIGUIENTE</button>
+          </div>
+        </form>
+        <p class="disclaimer">Simulación educativa del juego. No uses datos ni contraseñas reales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="os" class="layer hidden">
+    <div class="crt">
+      <div class="scanlines"></div>
+      <header class="titlebar">
+        <span class="brand">MUSHIN.AR</span>
+        <span class="game-clock" id="game-clock">AÑO 1 · MES 1 · DÍA 1</span>
+        <span class="tb-right">
+          <button class="user-chip" id="user-chip" type="button" title="Cambiar de jugador"></button>
+          <button id="help-btn" class="help-btn" type="button" aria-label="Ver tutorial">?</button>
+        </span>
+      </header>
+
+      <nav class="dock">
+        <button class="dock-btn active" data-view="dash">INICIO</button>
+        <button class="dock-btn" data-view="invest">INVERTIR</button>
+        <button class="dock-btn" data-view="shop">TIENDA</button>
+        <button class="dock-btn" data-view="calc">CALCULAR</button>
+        <button class="dock-btn" data-view="wallet">WALLET</button>
+        <button class="dock-btn" data-view="chain">RED</button>
+        <button class="dock-btn" data-view="term">TERM</button>
+      </nav>
+
+      <main class="workspace">
+        <section class="view active" id="view-dash">
+          <div class="grid dash-grid">
+            <article class="win win-wide">
+              <h2 class="win-h">MI PATRIMONIO // ÚLTIMOS 180 DÍAS</h2>
+              <canvas id="chart-equity" width="320" height="90"></canvas>
+              <div class="kpi-row" id="kpi-row">
+                <div class="kpi"><span>PATRIMONIO</span><strong id="kpi-total">$ 0</strong></div>
+                <div class="kpi"><span>INVERTIDO</span><strong id="kpi-invested">$ 0</strong></div>
+                <div class="kpi"><span>INTERESES</span><strong id="kpi-interest" class="up">$ 0</strong></div>
+                <div class="kpi"><span>EN BILLETERA</span><strong id="kpi-cash">$ 0</strong></div>
+              </div>
+            </article>
+            <article class="win" id="daily-win">
+              <h2 class="win-h">RECOMPENSA DIARIA 🪙</h2>
+              <p class="detail" id="daily-txt"></p>
+              <p class="streak" id="daily-streak"></p>
+              <button type="button" class="btn wide" id="btn-claim">RECLAMAR</button>
+            </article>
+            <article class="win" id="goal-win">
+              <h2 class="win-h">MI META</h2>
+              <p class="goal-head" id="goal-head"></p>
+              <div class="bar"><span id="goal-bar"></span></div>
+              <p class="goal-txt" id="goal-txt"></p>
+              <p class="goal-eta" id="goal-eta"></p>
+            </article>
+            <article class="win">
+              <h2 class="win-h">POSICIONES</h2>
+              <canvas id="chart-alloc" width="160" height="40"></canvas>
+              <ul class="alloc" id="alloc-list"></ul>
+            </article>
+            <article class="win win-wide">
+              <h2 class="win-h">AVISOS DE MUSHI</h2>
+              <ul class="feed" id="alert-feed"></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-invest">
+          <div class="grid market-grid">
+            <article class="win">
+              <h2 class="win-h">ACTIVOS // STELLAR</h2>
+              <ul class="asset-list" id="asset-list"></ul>
+            </article>
+            <article class="win" id="invest-win">
+              <h2 class="win-h">INVERTIR EN <span id="sel-code">-</span></h2>
+              <p class="detail" id="asset-detail"></p>
+              <p class="avail">DISPONIBLE <strong id="inv-avail">$ 0</strong></p>
+              <label class="field">MONTO (FNP)
+                <input id="inv-amt" type="number" min="1" step="10" value="100" />
+              </label>
+              <div class="quick">
+                <button type="button" class="btn ghost mini" data-pct="0.25">25%</button>
+                <button type="button" class="btn ghost mini" data-pct="0.5">50%</button>
+                <button type="button" class="btn ghost mini" data-pct="1">TODO</button>
+              </div>
+              <p class="preview" id="inv-preview"></p>
+              <button type="button" class="btn wide" id="btn-invest">INVERTIR</button>
+            </article>
+            <article class="win win-wide">
+              <h2 class="win-h">MIS INVERSIONES</h2>
+              <table class="ledger">
+                <thead><tr><th>ACTIVO</th><th>APORTADO</th><th>VALOR</th><th>INTERÉS</th><th></th></tr></thead>
+                <tbody id="pos-body"></tbody>
+              </table>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-shop">
+          <div class="grid chain-grid">
+            <article class="win win-wide" id="shop-win">
+              <h2 class="win-h">TIENDA // PAGÁS CON FNP</h2>
+              <p class="avail">TENÉS <strong id="shop-avail">0 FNP</strong></p>
+              <ul class="shop-list" id="shop-list"></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-calc">
+          <div class="grid calc-grid">
+            <article class="win" id="calc-win">
+              <h2 class="win-h">CALCULADORA</h2>
+              <form id="calc-form" autocomplete="off">
+                <label class="field">CAPITAL INICIAL ($)<input id="c-cap" type="number" min="0" step="1000" value="10000" /></label>
+                <label class="field">APORTE POR MES ($)<input id="c-month" type="number" min="0" step="500" value="1000" /></label>
+                <label class="field">TASA ANUAL (TNA %)<input id="c-rate" type="number" min="0" max="200" step="0.5" value="10" /></label>
+                <label class="field">AÑOS<input id="c-years" type="number" min="1" max="50" value="10" /></label>
+                <label class="field">CAPITALIZA
+                  <select id="c-freq">
+                    <option value="360">TODOS LOS DÍAS</option>
+                    <option value="12" selected>TODOS LOS MESES</option>
+                    <option value="1">UNA VEZ AL AÑO</option>
+                  </select>
+                </label>
+              </form>
+            </article>
+            <article class="win">
+              <h2 class="win-h">LA BOLA DE NIEVE ❄️</h2>
+              <canvas id="chart-calc" width="420" height="160"></canvas>
+              <p class="legend"><i class="sw sw-put"></i>LO QUE PUSISTE <i class="sw sw-int"></i>INTERESES</p>
+              <div class="kpi-row">
+                <div class="kpi"><span>TOTAL FINAL</span><strong id="c-total">$ 0</strong></div>
+                <div class="kpi"><span>PUSISTE</span><strong id="c-put">$ 0</strong></div>
+                <div class="kpi"><span>INTERESES</span><strong id="c-int" class="up">$ 0</strong></div>
+              </div>
+              <p class="formula">A = P · (1 + r/n)<sup>n·t</sup></p>
+              <p class="detail">P es lo que ponés, r la tasa anual, n cuántas veces por año se suman los intereses y t los años. Cada vez que se suman, los intereses nuevos también empiezan a generar intereses.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-wallet">
+          <div class="grid wallet-grid">
+            <article class="win" id="wallet-card">
+              <h2 class="win-h">BILLETERA STELLAR</h2>
+              <p class="addr" id="wallet-addr"></p>
+              <p class="net">RED <strong id="wallet-net"></strong></p>
+              <ul class="alloc" id="bal-list"></ul>
+            </article>
+            <article class="win win-wide">
+              <h2 class="win-h">MOVIMIENTOS</h2>
+              <table class="ledger">
+                <thead><tr><th>DÍA</th><th>OPERACIÓN</th><th>ACTIVO</th><th>MONTO</th><th>TX</th></tr></thead>
+                <tbody id="ledger-body"></tbody>
+              </table>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-chain">
+          <div class="grid chain-grid">
+            <article class="win win-wide">
+              <h2 class="win-h">EXPLORER // STELLAR TESTNET (SIM)</h2>
+              <div class="chain-stats">
+                <div>LEDGER <strong id="chain-height">0</strong></div>
+                <div>CIERRE <strong>~5 s</strong></div>
+                <div>FEE <strong>0.00001 XLM</strong></div>
+              </div>
+              <ul class="blocks" id="block-list"></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-term">
+          <article class="win term-win">
+            <h2 class="win-h">COM1:// MUSHIN OS 2.0</h2>
+            <div id="term-out" class="term-out"></div>
+            <form id="term-form" autocomplete="off">
+              <span>&gt;</span>
+              <input id="term-in" maxlength="80" spellcheck="false" aria-label="Comando" />
+            </form>
+          </article>
+        </section>
+      </main>
+
+      <footer class="taskbar">
+        <button id="start-btn" type="button">START</button>
+        <span class="tb-win">MUSHIN TERMINAL</span>
+        <span class="speed-ctl" id="speed-ctl" aria-label="Velocidad del tiempo">
+          <button type="button" data-speed="0" aria-label="Pausa">⏸</button>
+          <button type="button" data-speed="1">1x</button>
+          <button type="button" data-speed="7">7x</button>
+          <button type="button" data-speed="30">30x</button>
+        </span>
+        <span class="tb-status" id="tb-status">STELLAR SIM OK</span>
+        <button id="power-btn" type="button" aria-label="Apagar la compu">⏻</button>
+      </footer>
+    </div>
+  </div>
+
+  <div id="coach" class="coach hidden" role="dialog" aria-label="Tutorial">
+    <div class="coach-spot" id="coach-spot"></div>
+    <div class="coach-box" id="coach-box">
+      <div class="mascot" aria-hidden="true">🦉</div>
+      <div class="bubble">
+        <p class="coach-name">MUSHI <span id="coach-count"></span></p>
+        <p id="coach-text" aria-live="polite"></p>
+        <div class="coach-btns">
+          <button type="button" class="btn ghost mini" id="coach-skip">SALTAR</button>
+          <button type="button" class="btn ghost mini" id="coach-prev">ATRÁS</button>
+          <button type="button" class="btn mini" id="coach-next">SIGUIENTE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/stellar.js"></script>
+  <script src="js/bridge.js"></script>
+  <script src="js/mushin.js"></script>
+</body>
+</html>
