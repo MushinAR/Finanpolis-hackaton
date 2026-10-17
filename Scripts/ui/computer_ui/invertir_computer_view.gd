@@ -1,6 +1,6 @@
 extends Control
 ## Pestaña "Invertir" de la compu: abre mushin.ar (inversión con interés compuesto).
-## En el export Web se monta encima del juego; en el editor solo muestra un aviso.
+## En el export Web se monta encima del juego; en escritorio se abre en el navegador.
 
 @onready var label: Label = %StatusLabel
 
@@ -15,9 +15,9 @@ func _ready() -> void:
 		_layer.visibility_changed.connect(_on_layer_visibility_changed)
 	if Mushin.is_available():
 		label.text = "Abriendo mushin.ar..."
-		Mushin.open()
 	else:
-		label.text = "mushin.ar funciona en la versión web.\nExportá a Web para probarlo."
+		label.text = "mushin.ar se abrió en tu navegador.\nSi no carga, corré demo.ps1"
+	Mushin.open()
 
 
 func _exit_tree() -> void:
@@ -25,7 +25,8 @@ func _exit_tree() -> void:
 
 
 func _on_layer_visibility_changed() -> void:
-	if _layer.visible:
+	# En escritorio no se reabre: cada apertura sería una pestaña nueva del navegador.
+	if _layer.visible and Mushin.is_available():
 		Mushin.open()
 	else:
 		Mushin.close()

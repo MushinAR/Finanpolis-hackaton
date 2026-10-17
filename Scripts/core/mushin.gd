@@ -24,6 +24,8 @@ const IFRAME_ID := "mushin-frame"
 
 ## Ruta del módulo relativa al index.html del export.
 @export var module_url: String = "mushin/index.html"
+## Dónde se abre el módulo fuera del export Web (lo sirve demo.ps1).
+@export var desktop_url: String = "http://localhost:8080/"
 
 var is_open: bool = false
 
@@ -46,12 +48,15 @@ func is_available() -> bool:
 
 ## Abre el módulo. Sin nombre, el módulo muestra su pantalla de ingreso.
 func open(player_name: String = "") -> void:
-	if not is_available():
-		push_warning("Mushin: el módulo solo está disponible en el export Web")
-		return
-	var url := module_url + "?boot=1"
+	var query := "?boot=1"
 	if not player_name.is_empty():
-		url += "&player=" + player_name.uri_encode()
+		query += "&player=" + player_name.uri_encode()
+	if not is_available():
+		# Escritorio (editor o build de Windows): se abre en el navegador del sistema.
+		# Necesita el servidor local corriendo (demo.ps1) y no hay puente de vuelta.
+		OS.shell_open(desktop_url + query)
+		return
+	var url := module_url + query
 	if _time_manager:
 		url += "&clock=game"
 	JavaScriptBridge.eval("""
