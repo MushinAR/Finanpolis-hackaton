@@ -1,4 +1,4 @@
-# Sirve mushin.ar en http://localhost:8080/ para la demo.
+﻿# Sirve mushin.ar en http://localhost:8080/ para la demo.
 # Con esto corriendo, la pestaña "Invertir" de la compu (juego en el editor, F5) abre el módulo
 # en el navegador. Cerrar esta ventana apaga el servidor.
 #
