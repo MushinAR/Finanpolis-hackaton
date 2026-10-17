@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://co8q11ttmft70" path="res://Scenes/ui/computer_ui/computer_views/carrera_computer_view.tscn" id="4_gxwro"]
 [ext_resource type="PackedScene" uid="uid://bbjcrpvsdwfof" path="res://Scenes/ui/computer_ui/computer_views/trabajo_computer_view.tscn" id="5_jxrx6"]
 [ext_resource type="PackedScene" uid="uid://cj40qrs2igjmt" path="res://Scenes/ui/computer_ui/computer_views/juegos_computer_view.tscn" id="6_k1rmp"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/computer_ui/computer_views/invertir_computer_view.tscn" id="7_invertir"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cnbw"]
 bg_color = Color(1, 1, 1, 1)
@@ -97,6 +98,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7cnbw")
 text = "Juegos"
 script = ExtResource("2_k5px0")
 tab_scene = ExtResource("6_k1rmp")
+
+[node name="InvertirButton" type="Button" parent="ComputerView/ComputerTabs/TabsContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7cnbw")
+text = "Invertir"
+script = ExtResource("2_k5px0")
+tab_scene = ExtResource("7_invertir")
 
 [node name="CurrentComputerView" type="Control" parent="ComputerView" unique_id=1666658412]
 unique_name_in_owner = true

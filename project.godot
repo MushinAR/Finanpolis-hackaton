@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 WorldState="*res://Scripts/core/world_state.gd"
 Sfx="*res://Scripts/core/sfx.gd"
+Mushin="*res://Scripts/core/mushin.gd"
 
 [display]
 

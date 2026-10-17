@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://oai6qj5ejn4f" path="res://Scenes/ui/computer_ui/computer_view.tscn" id="1_view"]
+[ext_resource type="Script" path="res://Scripts/ui/computer_ui/invertir_computer_view.gd" id="2_script"]
+
+[node name="InvertirComputerView" instance=ExtResource("1_view")]
+script = ExtResource("2_script")
+
+[node name="ComputerViewBackground" parent="." index="0"]
+color = Color(0.0784, 0.0392, 0.1333, 1)
+
+[node name="StatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4314, 0.9961, 0.2902, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
