@@ -20,3 +20,6 @@ mono_crash.*.json
 
 # Notas de trabajo locales (no se suben)
 docs/
+
+# Export Web local (se publica en la rama gh-pages)
+build/

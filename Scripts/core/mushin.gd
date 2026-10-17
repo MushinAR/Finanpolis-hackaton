@@ -36,6 +36,8 @@ var _time_manager: TimeManager
 
 func _ready() -> void:
 	get_tree().node_added.connect(_on_node_added)
+	# El TimeManager puede haber entrado antes que este autoload (lo carga WorldState).
+	_find_time_manager.call_deferred(get_tree().root)
 	if not is_available():
 		return
 	_on_message_cb = JavaScriptBridge.create_callback(_on_message)
@@ -118,6 +120,14 @@ func _on_node_added(node: Node) -> void:
 		_time_manager = node
 		_time_manager.time_passed.connect(_on_time_passed)
 		_time_manager.tree_exiting.connect(func() -> void: _time_manager = null)
+
+
+func _find_time_manager(node: Node) -> void:
+	if _time_manager:
+		return
+	_on_node_added(node)
+	for child in node.get_children():
+		_find_time_manager(child)
 
 
 func _on_time_passed(time_size: TimeManager.TimeSize) -> void:

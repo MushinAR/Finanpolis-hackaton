@@ -54,7 +54,7 @@ function defaults() {
     streak: 0,
     tutorialDone: false,
     goalHit: false,
-    speed: params.get("clock") === "game" ? 0 : 1,
+    speed: 1,
     selected: "AHRR",
   };
 }
@@ -596,7 +596,12 @@ function showView(id) {
   document.querySelector(`[data-view="${id}"]`).classList.add("active");
 }
 
+// Con ?clock=game el calendario lo avanza el juego (advance_days): el reloj propio queda apagado.
+const GAME_CLOCK = params.get("clock") === "game";
+if (GAME_CLOCK) document.getElementById("speed-ctl").classList.add("hidden");
+
 function setSpeed(s) {
+  if (GAME_CLOCK) s = 0;
   state.speed = s;
   document.querySelectorAll("#speed-ctl button").forEach((b) => {
     b.classList.toggle("on", Number(b.dataset.speed) === s);
@@ -843,8 +848,11 @@ const TOUR = [
     text: () => "El truco del interés compuesto: ganás intereses sobre tus intereses, como una bola de nieve ❄️. Cambiá los números y mirá cómo crece con los años." },
   { view: "wallet", target: "#wallet-card",
     text: () => "Esta es tu billetera de Stellar. Tus tokens viven acá y cada movimiento queda registrado con su código (hash)." },
-  { view: "dash", target: "#speed-ctl",
-    text: () => "El tiempo del juego corre solo y cada día tus inversiones suman intereses. Con ⏸ 1x 7x 30x lo pausás o lo acelerás." },
+  GAME_CLOCK
+    ? { view: "dash", target: "#game-clock",
+        text: () => "El tiempo lo maneja Finanpolis: cada día que pasa en el juego, tus inversiones suman intereses." }
+    : { view: "dash", target: "#speed-ctl",
+        text: () => "El tiempo del juego corre solo y cada día tus inversiones suman intereses. Con ⏸ 1x 7x 30x lo pausás o lo acelerás." },
   { target: "#help-btn",
     text: () => "Si te perdés, tocá ? y repasamos. Tip: arrancá con algo de riesgo bajo y dejalo crecer. ¡A invertir! 🚀" },
 ];

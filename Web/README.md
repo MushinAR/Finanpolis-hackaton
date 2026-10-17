@@ -20,10 +20,14 @@ En escritorio el módulo funciona solo: no le avisa al juego de compras ni de to
 
 ## Versión web (módulo dentro del juego)
 
-1. *Proyecto → Exportar → Añadir → Web*. En las opciones, dejar **Thread Support desactivado**, así no hacen falta encabezados especiales en el servidor.
-2. Exportar a una carpeta, por ejemplo `build/web/index.html`.
-3. Copiar `Web/mushin` dentro de esa carpeta: queda `build/web/mushin/index.html`.
-4. Servir esa carpeta por HTTP: `Web/demo.ps1 -Root build/web`, o subirla a GitHub Pages / itch.io.
+El preset "Web" ya está en `export_presets.cfg`, con Thread Support desactivado para que funcione en GitHub Pages sin encabezados especiales. Hacen falta las plantillas de exportación 4.7.2.
+
+1. Exportar y copiar mushin.ar en un paso:
+   `powershell -ExecutionPolicy Bypass -File Web/build_web.ps1 -Godot "C:\ruta\Godot_v4.7.2-stable_win64.exe"`
+2. Probar: `Web/demo.ps1 -Root build/web` y abrir `http://localhost:8080/`.
+3. Publicar: subir el contenido de `build/web` a la rama `gh-pages` (GitHub Pages).
+
+En la versión web, el calendario de mushin.ar lo avanza el `TimeManager` del juego.
 
 ## Señales del autoload
 
